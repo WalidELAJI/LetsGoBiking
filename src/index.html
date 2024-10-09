@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maquette Itinéraire</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 
 <div id="map">
     <div id="input-box">
         <h2>Itinéraire</h2>
-        <strong><label  for="origin">Départ :</label></strong>
+        <strong><label for="origin">Départ :</label></strong>
         <input type="text" id="origin" placeholder="Entrez le départ">
         <strong><label for="destination">Arrivée :</label></strong>
         <input type="text" id="destination" placeholder="Entrez l'arrivée">
@@ -26,17 +26,16 @@
 
     <!-- Pop-up Notifications -->
     <div id="popup-notifications">
-        <p><strong>Notification en temps réel : Route des Lucioles est bloquée</strong></p>
+        <p><strong>Préparez-vous à un ralentissement près de Route des Lucioles</strong></p>
     </div>
 </div>
 
-<!-- Message de confirmation d'itinéraire-->
-<script>
-    function confirmRoute() {
-        const origin = document.getElementById('origin').value;
-        const destination = document.getElementById('destination').value;
-        alert(`Itinéraire confirmé de ${origin} à ${destination}`);
-    }
-</script>
+<!-- Notification personnalisée -->
+<div id="custom-notification" class="hidden">
+    <p id="notification-message"></p>
+</div>
+
+<!-- Lien vers le fichier JavaScript -->
+<script src="script/ConfirmRoute.js"></script>
 </body>
 </html>
