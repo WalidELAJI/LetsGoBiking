@@ -11,12 +11,20 @@ body, html {
     font-family: 'Roboto', sans-serif;
 }
 
-#map {
+#bd {
     position: relative;
     height: 100%;
-    background-image: url('../assets/images/map.jpeg');
     background-size: cover;
     background-position: center;
+}
+
+#map {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
 }
 
 #input-box {
