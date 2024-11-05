@@ -64,9 +64,14 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 L.Control.geocoder().addTo(map);
 
-// Fonction pour récupérer les suggestions du Geocoder
+// Fonction pour récupérer les suggestions du Geocoder, limitées à la France
 function getGeocoderSuggestions(query, callback) {
-    L.Control.Geocoder.nominatim().geocode(query, function(results) {
+    L.Control.Geocoder.nominatim({
+        geocodingQueryParams: {
+            countrycodes: 'fr', // Limite les résultats à la France
+            limit: 5 // Limite le nombre de résultats à 5 pour de meilleures performances
+        }
+    }).geocode(query, function(results) {
         callback(results);
     });
 }
@@ -107,4 +112,6 @@ document.getElementById('destination').addEventListener('input', function () {
         });
     }
 });
+
+
 
