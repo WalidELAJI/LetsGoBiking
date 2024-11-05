@@ -63,3 +63,48 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 L.Control.geocoder().addTo(map);
+
+// Fonction pour récupérer les suggestions du Geocoder
+function getGeocoderSuggestions(query, callback) {
+    L.Control.Geocoder.nominatim().geocode(query, function(results) {
+        callback(results);
+    });
+}
+
+// Fonction pour afficher les suggestions dans une boîte sous l'input
+function displaySuggestionsFromGeocoder(input, suggestions) {
+    const suggestionBox = input.nextElementSibling; // Sélectionne l'élément suivant l'input pour afficher les suggestions
+    suggestionBox.innerHTML = '';
+
+    suggestions.forEach(suggestion => {
+        const item = document.createElement('div');
+        item.classList.add('suggestion-item');
+        item.textContent = suggestion.name;
+        item.onclick = function () {
+            input.value = suggestion.name; // Remplir l'input avec la suggestion sélectionnée
+            suggestionBox.innerHTML = ''; // Vider les suggestions après la sélection
+        };
+        suggestionBox.appendChild(item);
+    });
+}
+
+// Ajout de l'auto-complétion via le Geocoder Leaflet pour le champ départ
+document.getElementById('origin').addEventListener('input', function () {
+    const input = this;
+    if (input.value.length > 2) {  // Ne pas déclencher si moins de 3 caractères
+        getGeocoderSuggestions(input.value, function (suggestions) {
+            displaySuggestionsFromGeocoder(input, suggestions);
+        });
+    }
+});
+
+// Ajout de l'auto-complétion via le Geocoder Leaflet pour le champ arrivée
+document.getElementById('destination').addEventListener('input', function () {
+    const input = this;
+    if (input.value.length > 2) {  // Ne pas déclencher si moins de 3 caractères
+        getGeocoderSuggestions(input.value, function (suggestions) {
+            displaySuggestionsFromGeocoder(input, suggestions);
+        });
+    }
+});
+
