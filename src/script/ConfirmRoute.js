@@ -1,10 +1,15 @@
-let originMarker, destinationMarker, routeLine;
-let walkingLine, cyclingLine;
+let originMarker, destinationMarker;
+let routeLine; // Ligne d'itinéraire actuelle
+let bikeStationsLayer; // Couche pour les stations de vélos
 
 function confirmRoute() {
     const origin = document.getElementById('origin').value;
     const destination = document.getElementById('destination').value;
-    document.getElementById('notification-message').textContent = `Itinéraire confirmé de ${origin} à ${destination}`;
+
+    // Récupérer le mode de transport sélectionné
+    const mode = document.querySelector('input[name="mode"]:checked').value;
+
+    document.getElementById('notification-message').textContent = `Itinéraire confirmé de ${origin} à ${destination} en ${mode === 'walking' ? 'marche' : 'vélo'}`;
 
     const notification = document.getElementById('custom-notification');
     notification.classList.remove('hidden');
@@ -27,7 +32,7 @@ function confirmRoute() {
                     }
                     destinationMarker = L.marker(destinationLatLng).addTo(map).bindPopup("Arrivée").openPopup();
 
-                    getRoute(originLatLng, destinationLatLng);
+                    getRoute(originLatLng, destinationLatLng, mode); // Passer le mode à getRoute
                 } else {
                     alert("Adresse d'arrivée introuvable.");
                 }
@@ -57,46 +62,52 @@ function geocodeAddress(address, callback) {
         });
 }
 
-function getRoute(originLatLng, destinationLatLng) {
-    // Supprimer les anciennes lignes d'itinéraire si elles existent
-    if (walkingLine) {
-        map.removeLayer(walkingLine);
+function getRoute(originLatLng, destinationLatLng, mode) {
+    // Supprimer l'ancienne ligne d'itinéraire si elle existe
+    if (routeLine) {
+        map.removeLayer(routeLine);
+        routeLine = null;
     }
-    if (cyclingLine) {
-        map.removeLayer(cyclingLine);
+    // Supprimer les stations de vélos précédentes
+    if (bikeStationsLayer) {
+        map.removeLayer(bikeStationsLayer);
+        bikeStationsLayer = null;
     }
 
-    // Récupérer l'itinéraire à pied
-    const walkingUrl = `https://router.project-osrm.org/route/v1/foot/${originLatLng[1]},${originLatLng[0]};${destinationLatLng[1]},${destinationLatLng[0]}?overview=full&geometries=geojson`;
+    let profile;
+    let lineStyle;
+    if (mode === 'walking') {
+        profile = 'foot';
+        lineStyle = { color: 'green', weight: 4, dashArray: '5,10' };
+    } else if (mode === 'cycling') {
+        profile = 'bicycle';
+        lineStyle = { color: 'blue', weight: 4 };
+    } else {
+        console.error('Mode de transport inconnu:', mode);
+        return;
+    }
 
-    fetch(walkingUrl)
+    const url = `https://router.project-osrm.org/route/v1/${profile}/${originLatLng[1]},${originLatLng[0]};${destinationLatLng[1]},${destinationLatLng[0]}?overview=full&geometries=geojson`;
+
+    fetch(url)
         .then(response => response.json())
         .then(data => {
-            const routeCoordinates = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+            if (data.routes && data.routes.length > 0) {
+                const routeCoordinates = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
 
-            walkingLine = L.polyline(routeCoordinates, { color: 'green', weight: 4, dashArray: '5,10' }).addTo(map);
-            map.fitBounds(walkingLine.getBounds()); // Ajuste la carte pour que l'itinéraire soit visible
+                routeLine = L.polyline(routeCoordinates, lineStyle).addTo(map);
+                map.fitBounds(routeLine.getBounds()); // Ajuster la carte pour que l'itinéraire soit visible
+
+                if (mode === 'cycling') {
+                    // Afficher les stations de vélos le long de l'itinéraire
+                    getBikeStationsAlongRoute(routeLine);
+                }
+            } else {
+                alert('Aucun itinéraire trouvé pour ce mode de transport.');
+            }
         })
         .catch(error => {
-            console.error('Erreur lors de la récupération de l\'itinéraire à pied:', error);
-        });
-
-    // Récupérer l'itinéraire à vélo
-    const cyclingUrl = `https://router.project-osrm.org/route/v1/bicycle/${originLatLng[1]},${originLatLng[0]};${destinationLatLng[1]},${destinationLatLng[0]}?overview=full&geometries=geojson`;
-
-    fetch(cyclingUrl)
-        .then(response => response.json())
-        .then(data => {
-            const routeCoordinates = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
-
-            cyclingLine = L.polyline(routeCoordinates, { color: 'blue', weight: 4 }).addTo(map);
-            map.fitBounds(cyclingLine.getBounds()); // Ajuste la carte pour que l'itinéraire soit visible
-
-            // Afficher les stations de vélos le long de l'itinéraire
-            getBikeStationsAlongRoute(cyclingLine);
-        })
-        .catch(error => {
-            console.error('Erreur lors de la récupération de l\'itinéraire à vélo:', error);
+            console.error('Erreur lors de la récupération de l\'itinéraire:', error);
         });
 }
 
@@ -109,13 +120,28 @@ function getBikeStationsAlongRoute(routeLine) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            const stationsAlongRoute = [];
+
             data.forEach(station => {
                 const latLng = [station.position.latitude, station.position.longitude];
                 if (isPointNearLine(latLng, routeLine, 500)) { // 500 mètres
-                    L.marker(latLng, { icon: bikeIcon }).addTo(map)
-                        .bindPopup(`<strong>${station.name}</strong><br>Vélos disponibles: ${station.totalStands.availabilities.bikes}<br>Places libres: ${station.totalStands.availabilities.stands}`);
+                    stationsAlongRoute.push({
+                        latLng: latLng,
+                        station: station
+                    });
                 }
             });
+
+            // Créer un groupe de couches pour les stations de vélos
+            bikeStationsLayer = L.layerGroup();
+
+            stationsAlongRoute.forEach(item => {
+                const station = item.station;
+                const marker = L.marker(item.latLng, { icon: bikeIcon }).bindPopup(`<strong>${station.name}</strong><br>Vélos disponibles: ${station.totalStands.availabilities.bikes}<br>Places libres: ${station.totalStands.availabilities.stands}`);
+                bikeStationsLayer.addLayer(marker);
+            });
+
+            bikeStationsLayer.addTo(map);
         })
         .catch(error => {
             console.error('Erreur lors de la récupération des stations de vélos:', error);
@@ -143,6 +169,7 @@ const bikeIcon = L.icon({
     iconSize: [40, 40], // Taille de l'icône
 });
 
+// Initialisation de la carte
 var map = L.map('map').setView([46.2276, 2.2137], 6); // Centré sur la France
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
