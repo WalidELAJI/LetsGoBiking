@@ -123,3 +123,21 @@ body, html {
     transition: opacity 0.5s ease-out; /* Animation pour la disparition */
 }
 
+/* Style pour la boîte de suggestions */
+.suggestion-box {
+    position: relative;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
