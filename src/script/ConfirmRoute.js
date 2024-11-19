@@ -1,4 +1,5 @@
 let originMarker, destinationMarker, routeLine;
+let walkingLine, cyclingLine;
 
 function confirmRoute() {
     const origin = document.getElementById('origin').value;
@@ -12,7 +13,6 @@ function confirmRoute() {
         notification.classList.add('hidden');
     }, 2000);
 
-    // Utiliser l'API du gouvernement pour géocoder l'adresse de départ
     geocodeAddress(origin, function(originLatLng) {
         if (originLatLng) {
             if (originMarker) {
@@ -20,7 +20,6 @@ function confirmRoute() {
             }
             originMarker = L.marker(originLatLng).addTo(map).bindPopup("Départ").openPopup();
 
-            // Géocoder l'adresse d'arrivée
             geocodeAddress(destination, function(destinationLatLng) {
                 if (destinationLatLng) {
                     if (destinationMarker) {
@@ -28,7 +27,6 @@ function confirmRoute() {
                     }
                     destinationMarker = L.marker(destinationLatLng).addTo(map).bindPopup("Arrivée").openPopup();
 
-                    // Appeler l'API de routage pour obtenir l'itinéraire entre le départ et l'arrivée
                     getRoute(originLatLng, destinationLatLng);
                 } else {
                     alert("Adresse d'arrivée introuvable.");
@@ -60,32 +58,98 @@ function geocodeAddress(address, callback) {
 }
 
 function getRoute(originLatLng, destinationLatLng) {
-    const apiUrl = `https://router.project-osrm.org/route/v1/driving/${originLatLng[1]},${originLatLng[0]};${destinationLatLng[1]},${destinationLatLng[0]}?overview=full&geometries=geojson`;
+    // Supprimer les anciennes lignes d'itinéraire si elles existent
+    if (walkingLine) {
+        map.removeLayer(walkingLine);
+    }
+    if (cyclingLine) {
+        map.removeLayer(cyclingLine);
+    }
 
-    fetch(apiUrl)
+    // Récupérer l'itinéraire à pied
+    const walkingUrl = `https://router.project-osrm.org/route/v1/foot/${originLatLng[1]},${originLatLng[0]};${destinationLatLng[1]},${destinationLatLng[0]}?overview=full&geometries=geojson`;
+
+    fetch(walkingUrl)
         .then(response => response.json())
         .then(data => {
             const routeCoordinates = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
 
-            if (routeLine) {
-                map.removeLayer(routeLine);
-            }
-
-            routeLine = L.polyline(routeCoordinates, { color: 'blue', weight: 4 }).addTo(map);
-            map.fitBounds(routeLine.getBounds()); // Ajuste la carte pour que l'itinéraire soit visible
+            walkingLine = L.polyline(routeCoordinates, { color: 'green', weight: 4, dashArray: '5,10' }).addTo(map);
+            map.fitBounds(walkingLine.getBounds()); // Ajuste la carte pour que l'itinéraire soit visible
         })
         .catch(error => {
-            console.error('Erreur lors de la récupération de l\'itinéraire:', error);
+            console.error('Erreur lors de la récupération de l\'itinéraire à pied:', error);
+        });
+
+    // Récupérer l'itinéraire à vélo
+    const cyclingUrl = `https://router.project-osrm.org/route/v1/bicycle/${originLatLng[1]},${originLatLng[0]};${destinationLatLng[1]},${destinationLatLng[0]}?overview=full&geometries=geojson`;
+
+    fetch(cyclingUrl)
+        .then(response => response.json())
+        .then(data => {
+            const routeCoordinates = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+
+            cyclingLine = L.polyline(routeCoordinates, { color: 'blue', weight: 4 }).addTo(map);
+            map.fitBounds(cyclingLine.getBounds()); // Ajuste la carte pour que l'itinéraire soit visible
+
+            // Afficher les stations de vélos le long de l'itinéraire
+            getBikeStationsAlongRoute(cyclingLine);
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération de l\'itinéraire à vélo:', error);
         });
 }
+
+// Fonction pour récupérer et afficher les stations de vélos le long de l'itinéraire
+function getBikeStationsAlongRoute(routeLine) {
+    const apiKey = 'c8cb5a7b30b3bac4849ab1a43f40174505597837';
+    const contractName = 'lyon'; // Remplacez par le nom de la ville souhaitée
+    const url = `https://api.jcdecaux.com/vls/v3/stations?contract=${contractName}&apiKey=${apiKey}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(station => {
+                const latLng = [station.position.latitude, station.position.longitude];
+                if (isPointNearLine(latLng, routeLine, 500)) { // 500 mètres
+                    L.marker(latLng, { icon: bikeIcon }).addTo(map)
+                        .bindPopup(`<strong>${station.name}</strong><br>Vélos disponibles: ${station.totalStands.availabilities.bikes}<br>Places libres: ${station.totalStands.availabilities.stands}`);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des stations de vélos:', error);
+        });
+}
+
+// Fonction pour vérifier si un point est proche d'une polyligne (itinéraire)
+function isPointNearLine(point, polyline, maxDistance) {
+    const latlngPoint = L.latLng(point);
+    const latlngs = polyline.getLatLngs();
+    for (let i = 0; i < latlngs.length - 1; i++) {
+        const segmentStart = latlngs[i];
+        const segmentEnd = latlngs[i + 1];
+        const distance = L.GeometryUtil.distanceSegment(map, latlngPoint, segmentStart, segmentEnd);
+        if (distance <= maxDistance) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Définir une icône personnalisée pour les stations de vélos
+const bikeIcon = L.icon({
+    iconUrl: 'assets/images/bike_icon.png', // Assurez-vous que le chemin est correct
+    iconSize: [40, 40], // Taille de l'icône
+});
 
 var map = L.map('map').setView([46.2276, 2.2137], 6); // Centré sur la France
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-// Fonction pour récupérer les suggestions de l'API du gouvernement français
+// Fonction pour récupérer les suggestions du Geocoder
 function getGeocoderSuggestions(query, callback) {
     const url = `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5&autocomplete=1`;
     fetch(url)
