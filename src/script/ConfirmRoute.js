@@ -94,7 +94,11 @@ function getRoute(originLatLng, destinationLatLng, mode) {
         coordinates: [
             [originLatLng[1], originLatLng[0]],
             [destinationLatLng[1], destinationLatLng[0]]
-        ]
+        ],
+        instructions: true, // Demander les instructions détaillées
+        elevation: false,    // Désactiver l'élévation si non nécessaire
+        geometry: true,      // Inclure la géométrie de l'itinéraire
+        language: 'fr'       // Langue des instructions
     };
 
     fetch(url, {
@@ -112,6 +116,9 @@ function getRoute(originLatLng, destinationLatLng, mode) {
 
                 routeLine = L.polyline(routeCoordinates, lineStyle).addTo(map);
                 map.fitBounds(routeLine.getBounds()); // Ajuster la carte pour que l'itinéraire soit visible
+
+                const instructions = data.features[0].properties.segments[0].steps;
+                displayInstructions(instructions);
 
                 if (mode === 'cycling') {
                     // Afficher les stations de vélos le long de l'itinéraire
@@ -248,3 +255,15 @@ document.getElementById('destination').addEventListener('input', function () {
         input.nextElementSibling.innerHTML = ''; // Vider les suggestions si moins de 3 caractères
     }
 });
+
+function displayInstructions(instructions) {
+    const instructionsContainer = document.getElementById('instructions');
+    let instructionsHtml = '<h3><strong>Instructions</strong></h3>';
+
+    instructions.forEach((step, index) => {
+        instructionsHtml += `<p><strong>Étape ${index + 1} :</strong> ${step.instruction}</p>`;
+    });
+
+    instructionsContainer.innerHTML = instructionsHtml;
+}
+
