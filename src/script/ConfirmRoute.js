@@ -77,23 +77,38 @@ function getRoute(originLatLng, destinationLatLng, mode) {
     let profile;
     let lineStyle;
     if (mode === 'walking') {
-        profile = 'foot';
+        profile = 'foot-walking';
         lineStyle = { color: 'green', weight: 4, dashArray: '5,10' };
     } else if (mode === 'cycling') {
-        profile = 'bicycle';
+        profile = 'cycling-regular';
         lineStyle = { color: 'blue', weight: 4 };
     } else {
         console.error('Mode de transport inconnu:', mode);
         return;
     }
 
-    const url = `https://router.project-osrm.org/route/v1/${profile}/${originLatLng[1]},${originLatLng[0]};${destinationLatLng[1]},${destinationLatLng[0]}?overview=full&geometries=geojson`;
+    const apiKey = '5b3ce3597851110001cf6248bbc1b0a571f842458d7d6321cf494140'; // Remplacez par votre clé API
+    const url = `https://api.openrouteservice.org/v2/directions/${profile}/geojson`;
 
-    fetch(url)
+    const requestBody = {
+        coordinates: [
+            [originLatLng[1], originLatLng[0]],
+            [destinationLatLng[1], destinationLatLng[0]]
+        ]
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': apiKey
+        },
+        body: JSON.stringify(requestBody)
+    })
         .then(response => response.json())
         .then(data => {
-            if (data.routes && data.routes.length > 0) {
-                const routeCoordinates = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+            if (data.features && data.features.length > 0) {
+                const routeCoordinates = data.features[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
 
                 routeLine = L.polyline(routeCoordinates, lineStyle).addTo(map);
                 map.fitBounds(routeLine.getBounds()); // Ajuster la carte pour que l'itinéraire soit visible
@@ -110,6 +125,7 @@ function getRoute(originLatLng, destinationLatLng, mode) {
             console.error('Erreur lors de la récupération de l\'itinéraire:', error);
         });
 }
+
 
 // Fonction pour récupérer et afficher les stations de vélos le long de l'itinéraire
 function getBikeStationsAlongRoute(routeLine) {
