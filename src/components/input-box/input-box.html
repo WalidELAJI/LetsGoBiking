@@ -1,0 +1,40 @@
+<template id="input-box-template">
+    <link rel="stylesheet" href="./components/input-box/input-box.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://unpkg.com/leaflet-geometryutil@0.10.0/src/leaflet.geometryutil.js"></script>
+
+
+    <div id="map"></div>
+    
+    <div id="input-box">
+        <h2>Itinéraire</h2>
+        <strong><label for="origin">Départ :</label></strong>
+        <input type="text" id="origin" placeholder="Entrez le départ">
+        <div class="suggestion-box"></div>
+        <strong><label for="destination">Arrivée :</label></strong>
+        <input type="text" id="destination" placeholder="Entrez l'arrivée">
+        <div class="suggestion-box"></div>
+
+        <strong>Mode de transport :</strong><br>
+        <input type="radio" id="mode-walking" name="mode" value="walking" checked>
+        <label for="mode-walking">À pied</label><br>
+        <input type="radio" id="mode-cycling" name="mode" value="cycling">
+        <label for="mode-cycling">À vélo</label><br>
+
+        <button id="confirm-btn"><strong>Confirmer</strong></button>
+    </div>
+
+
+        <!-- Notification personnalisée -->
+    <div id="custom-notification" class="hidden">
+        <p id="notification-message"></p>
+    </div>
+</template>

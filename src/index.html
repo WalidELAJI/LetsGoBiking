@@ -11,54 +11,26 @@
             crossorigin=""></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <link rel="stylesheet" href="styles/style.css">
     <script src="https://unpkg.com/leaflet-geometryutil@0.10.0/src/leaflet.geometryutil.js"></script>
 
 </head>
 <body>
 
 <div id="bd">
-    <div id="map"></div>
-        <div id="input-box">
-            <h2>Itinéraire</h2>
-            <strong><label for="origin">Départ :</label></strong>
-            <input type="text" id="origin" placeholder="Entrez le départ">
-            <div class="suggestion-box"></div>
-            <strong><label for="destination">Arrivée :</label></strong>
-            <input type="text" id="destination" placeholder="Entrez l'arrivée">
-            <div class="suggestion-box"></div>
 
-            <!-- Ajout des options de mode de transport -->
-            <strong>Mode de transport :</strong><br>
-            <input type="radio" id="mode-walking" name="mode" value="walking" checked>
-            <label for="mode-walking">À pied</label><br>
-            <input type="radio" id="mode-cycling" name="mode" value="cycling">
-            <label for="mode-cycling">À vélo</label><br>
+    <input-box></input-box>
+    <instructions-box></instructions-box>
+    <popup-notifications></popup-notifications>
 
-            <button onclick="confirmRoute()"><strong>Confirmer</strong></button>
-        </div>
-
-
-
-    <!-- Instructions -->
-    <div id="instructions">
-        <h3><strong>Instructions</strong></h3>
-        <p>Les instructions de l'itinéraire apparaîtront ici.</p>
-    </div>
-
-    <!-- Pop-up Notifications -->
-    <div id="popup-notifications">
-        <p><strong>Préparez-vous à un ralentissement près de Route des Lucioles</strong></p>
-    </div>
 </div>
 
-<!-- Notification personnalisée -->
-<div id="custom-notification" class="hidden">
-    <p id="notification-message"></p>
-</div>
 
 <!-- Lien vers le fichier JavaScript -->
-<script src="script/ConfirmRoute.js"></script>
+<script src="components/input-box/input-box.js"></script>
+<script src="components/instructions/instructions.js"></script>
+<script src="components/popup-notifications/popup-notifications.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
 
