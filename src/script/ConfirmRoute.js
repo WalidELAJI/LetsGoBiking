@@ -86,17 +86,37 @@ function drawItineraryOnMap(data) {
     placePin(startCoordinates, "Point de départ");
     placePin(destinationCoordinates, "Point d'arrivée");
 
-    if (data.Itinerary && data.Itinerary.routes) {
-        // Tracer les segments de l'itinéraire principal
-        data.Itinerary.routes.forEach(route => {
-            const coordinates = decodePolyline(route.geometry);
-            L.polyline(coordinates, { color: "blue", weight: 4 }).addTo(drawnItems);
-            console.log("Itinéraire tracé :", coordinates);
-        });
-    } else {
-        console.warn("Données d'itinéraire manquantes ou mal formatées :", data);
-    }
+    // Liste des segments
+    const segments = [
+        { key: "OriginToStation", color: "green", dashArray: "6 6", label: "Segment vers station" },
+        { key: "StationToStation", color: "blue", dashArray: "", label: "Segment inter-stations" },
+        { key: "StationToDestination", color: "red", dashArray: "6 6", label: "Segment vers destination" },
+    ];
+
+    // Tracer les segments
+    segments.forEach(({ key, color, dashArray, label }) => {
+        if (data.Itinerary[key]) {
+            try {
+                // Décoder le segment JSON
+                const segmentData = JSON.parse(data.Itinerary[key]);
+                console.log(`Segment ${key} trouvé :`, segmentData);
+
+                if (segmentData.routes && segmentData.routes[0].geometry) {
+                    const coordinates = decodePolyline(segmentData.routes[0].geometry);
+                    L.polyline(coordinates, { color, weight: 4, dashArray }).addTo(drawnItems);
+                    console.log(`Segment ${label} tracé :`, coordinates);
+                } else {
+                    console.warn(`Segment ${key} mal formé ou sans géométrie.`);
+                }
+            } catch (error) {
+                console.error(`Erreur lors du traitement du segment ${key} :`, error);
+            }
+        } else {
+            console.warn(`Segment ${key} manquant dans les données.`);
+        }
+    });
 }
+
 
 // Décoder une polyline OpenRouteService
 function decodePolyline(encoded) {
