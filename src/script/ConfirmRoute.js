@@ -101,6 +101,30 @@ function drawItineraryOnMap(data) {
     placePin(startCoordinates, "Point de départ");
     placePin(destinationCoordinates, "Point d'arrivée");
 
+    if (data.UseBike === false) {
+        console.log("Mode walking détecté. Traçage direct de l'itinéraire.");
+        const walkingItinerary = parseItinerary(data.Itinerary);
+        if (walkingItinerary && walkingItinerary.routes && walkingItinerary.routes[0].segments) {
+            // Extraire les instructions des segments
+            const instructions = extractInstructions(walkingItinerary.routes[0].segments);
+            displayInstructions(instructions);
+        } else {
+            console.warn("Itinéraire à pied mal formé ou sans géométrie.");
+        }
+    } else {
+        // Mode vélo avec segments
+        const instructions = [];
+        ["OriginToStation", "StationToStation", "StationToDestination"].forEach(key => {
+            if (data.Itinerary[key]) {
+                const segmentData = parseItinerary(data.Itinerary[key]);
+                if (segmentData && segmentData.routes && segmentData.routes[0].segments) {
+                    instructions.push(...extractInstructions(segmentData.routes[0].segments));
+                }
+            }
+        });
+        displayInstructions(instructions);
+    }
+
     // Vérifier si le mode est walking
     if (data.UseBike === false) {
         console.log("Mode walking détecté. Traçage direct de l'itinéraire.");
@@ -166,8 +190,6 @@ function drawItineraryOnMap(data) {
         }
     });
 }
-
-
 
 // Décoder une polyline OpenRouteService
 function decodePolyline(encoded) {
@@ -299,3 +321,47 @@ function displaySuggestions(input, suggestions, callback) {
     }
     console.log("Suggestions affichées pour :", input.id, suggestions);
 }
+
+function extractInstructions(segments) {
+    const instructions = [];
+    segments.forEach(segment => {
+        segment.steps.forEach(step => {
+            instructions.push(step.instruction);
+        });
+    });
+    return instructions;
+}
+
+// Afficher les instructions dans la section HTML dédiée
+function displayInstructions(instructions) {
+    const instructionsContainer = document.getElementById("instructions");
+    instructionsContainer.innerHTML = "<h3><strong>Instructions</strong></h3>"; // Réinitialiser la section
+
+    if (instructions.length === 0) {
+        instructionsContainer.innerHTML += "<p>Aucune instruction disponible.</p>";
+        return;
+    }
+
+    const list = document.createElement("ol");
+    instructions.forEach((instruction, index) => {
+        const item = document.createElement("li");
+        item.textContent = instruction;
+        list.appendChild(item);
+    });
+
+    instructionsContainer.appendChild(list);
+}
+
+function parseItinerary(itinerary) {
+    if (!itinerary) return null;
+    if (typeof itinerary === "string") {
+        try {
+            return JSON.parse(itinerary);
+        } catch (e) {
+            console.error("Échec de l'analyse JSON :", e);
+            return null;
+        }
+    }
+    return itinerary;
+}
+
