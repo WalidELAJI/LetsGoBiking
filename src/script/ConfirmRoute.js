@@ -101,6 +101,28 @@ function drawItineraryOnMap(data) {
     placePin(startCoordinates, "Point de départ");
     placePin(destinationCoordinates, "Point d'arrivée");
 
+    // Vérifier si le mode est walking
+    if (data.UseBike === false) {
+        console.log("Mode walking détecté. Traçage direct de l'itinéraire.");
+        try {
+            // Décoder l'itinéraire principal
+            const walkingItinerary = JSON.parse(data.Itinerary);
+            if (walkingItinerary && walkingItinerary.routes && walkingItinerary.routes[0].geometry) {
+                const coordinates = decodePolyline(walkingItinerary.routes[0].geometry);
+                L.polyline(coordinates, { color: "blue", weight: 4 }).addTo(drawnItems);
+                console.log("Itinéraire à pied tracé :", coordinates);
+            } else {
+                console.warn("Itinéraire à pied mal formé ou sans géométrie.");
+                showNotification("Aucun itinéraire valide trouvé pour le mode walking.");
+            }
+        } catch (error) {
+            console.error("Erreur lors du traitement de l'itinéraire à pied :", error);
+            showNotification("Erreur lors de la récupération de l'itinéraire à pied.");
+        }
+        return;
+    }
+
+    // Mode cycling ou autre
     if (data.ClosestOriginStation) {
         placeBikeStation(
             [data.ClosestOriginStation.Latitude, data.ClosestOriginStation.Longitude],
@@ -115,18 +137,17 @@ function drawItineraryOnMap(data) {
         );
     }
 
-    // Liste des segments
+    // Liste des segments pour le mode cycling
     const segments = [
         { key: "OriginToStation", color: "green", dashArray: "6 6", label: "Segment vers station" },
         { key: "StationToStation", color: "blue", dashArray: "", label: "Segment inter-stations" },
         { key: "StationToDestination", color: "red", dashArray: "6 6", label: "Segment vers destination" },
     ];
 
-    // Tracer les segments
+    // Tracer les segments pour cycling
     segments.forEach(({ key, color, dashArray, label }) => {
         if (data.Itinerary[key]) {
             try {
-                // Décoder le segment JSON
                 const segmentData = JSON.parse(data.Itinerary[key]);
                 console.log(`Segment ${key} trouvé :`, segmentData);
 
@@ -135,7 +156,7 @@ function drawItineraryOnMap(data) {
                     L.polyline(coordinates, { color, weight: 4, dashArray }).addTo(drawnItems);
                     console.log(`Segment ${label} tracé :`, coordinates);
                 } else {
-                    console.warn(`Segment ${key} mal formé ou sans géométrie.`);
+                    console.warn(`Segment ${label} mal formé ou sans géométrie.`);
                 }
             } catch (error) {
                 console.error(`Erreur lors du traitement du segment ${key} :`, error);
@@ -145,6 +166,7 @@ function drawItineraryOnMap(data) {
         }
     });
 }
+
 
 
 // Décoder une polyline OpenRouteService

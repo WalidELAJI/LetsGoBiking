@@ -33,7 +33,7 @@ namespace MapProject.Services
                     .FirstOrDefault();
 
                 // Step 5: Determine whether to use stations or compute direct route
-                if (closestOriginStation != null && closestDestinationStation != null)
+                if (closestOriginStation != null && closestDestinationStation != null && useBike==true)
                 {
                     // Compute bike itinerary between the closest stations
                     string stationToStationItinerary = await OpenRouteAPIService.ComputeItinerary(
