@@ -74,6 +74,21 @@ function fetchItinerary(mode) {
         });
 }
 
+const bikeStationIcon = L.icon({
+    iconUrl: 'assets/images/bike_icon.png', // Chemin vers l'image
+    iconSize: [30, 30], // Taille de l'icône
+    iconAnchor: [15, 30], // Point d'ancrage
+});
+
+// Fonction mise à jour pour placer les stations de vélo
+function placeBikeStation(coordinates, label) {
+    L.marker(coordinates, { icon: bikeStationIcon })
+        .addTo(drawnItems)
+        .bindPopup(label)
+        .openPopup();
+    console.log(`Station de vélo ajoutée : ${label}`, coordinates);
+}
+
 // Dessiner l'itinéraire sur la carte
 function drawItineraryOnMap(data) {
     console.log("Traitement des données reçues pour l'itinéraire...");
@@ -85,6 +100,20 @@ function drawItineraryOnMap(data) {
     // Ajouter les marqueurs de départ et d'arrivée
     placePin(startCoordinates, "Point de départ");
     placePin(destinationCoordinates, "Point d'arrivée");
+
+    if (data.ClosestOriginStation) {
+        placeBikeStation(
+            [data.ClosestOriginStation.Latitude, data.ClosestOriginStation.Longitude],
+            `Station de départ : ${data.ClosestOriginStation.Name}`
+        );
+    }
+
+    if (data.ClosestDestinationStation) {
+        placeBikeStation(
+            [data.ClosestDestinationStation.Latitude, data.ClosestDestinationStation.Longitude],
+            `Station d'arrivée : ${data.ClosestDestinationStation.Name}`
+        );
+    }
 
     // Liste des segments
     const segments = [
