@@ -3,14 +3,27 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using MapProject.Services;
+using Apache.NMS;
+using Apache.NMS.ActiveMQ;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace MapProject
 {
     class Program
     {
+        static List<string> instructionsQueue = new List<string>(); // Queue pour stocker les instructions de la requête en cours
+        static IConnection connection;
+        static ISession session;
+        static IDestination destination;
+
+
         static void Main(string[] args)
         {
+            // Initialiser la connexion à ActiveMQ et créer une queue
+            InitializeActiveMQ("InstructionQueue");
             StartServer();
+
         }
 
         public static void StartServer()
@@ -24,6 +37,29 @@ namespace MapProject
             {
                 var context = listener.GetContext(); // Wait for incoming requests
                 _ = HandleRequest(context); // Fire and forget to handle requests asynchronously
+            }
+        }
+        /*---------- méthodes pour gérer la connexion ActiveMQ ----------*/
+        public static void InitializeActiveMQ(string queueName)
+        {
+            try
+            {
+                Uri connectUri = new Uri("activemq:tcp://localhost:61616");
+                IConnectionFactory connectionFactory = new ConnectionFactory(connectUri);
+
+                // Créer une connexion unique pour l'application
+                connection = connectionFactory.CreateConnection();
+                connection.Start();
+                // Créer une session unique
+                session = connection.CreateSession();
+                // Créer ou cibler une queue
+                destination = session.GetQueue(queueName);
+
+                Console.WriteLine($"ActiveMQ initialisé avec la queue '{queueName}' en activemq:tcp://localhost:61616");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur lors de l'initialisation de ActiveMQ : {ex.Message}");
             }
         }
 
@@ -133,6 +169,44 @@ namespace MapProject
                             responseString = await ItineraryService.GetItinerary(
                                 parsedOriginLat, parsedOriginLon, parsedDestinationLat, parsedDestinationLon, useBike);
 
+                            //VIDER LA LISTE : après chaque requête vider la queue (si contient déjà instructions de l'ancien appel)
+                            instructionsQueue.Clear();
+
+                            /*--- EXTRACTION des instructions SEUL ---*/
+
+                            // Désérialiser la réponse JSON en JObject
+                            JObject responseObject = JObject.Parse(responseString);
+
+                            // Vérifier si l'élément "Itinerary" existe dans la réponse
+                            if (responseObject["Itinerary"] != null)
+                            {
+                                // Accéder à l'élément "Itinerary"
+                                var itineraryValues = responseObject["Itinerary"];
+
+                                // Utilisation de .Children() pour itérer sur les propriétés de l'objet "Itinerary"
+                                foreach (var property in itineraryValues.Children<JProperty>())
+                                {
+                                    // Chaque "property" contient une clé et une valeur
+                                    string propertyName = property.Name;
+                                    string itineraryJson = property.Value.ToString();
+
+                                    // Vérifier que la chaîne JSON est valide avant de l'envoyer à ExtractInstructions
+                                    if (!string.IsNullOrEmpty(itineraryJson))
+                                    {
+                                        // Appeler la méthode ExtractInstructions pour traiter cette chaîne JSON + ajout dans la liste instructionsQueue
+                                        ExtractInstructions(itineraryJson);
+                                    }
+                                }
+
+                                // Publier les instructions sur la queue
+                                PublishInstructions(instructionsQueue);
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Itinerary information is missing in the response.");
+                            }
+
                             context.Response.StatusCode = 200; // OK
                         }
                         catch (FormatException ex)
@@ -194,5 +268,70 @@ namespace MapProject
                 }
             }
         }
+
+        public static void ExtractInstructions(string itineraryJson)
+        {
+            // Désérialiser la chaîne JSON en un objet JObject
+            JObject itineraryObject = JObject.Parse(itineraryJson);
+
+            // Parcourir les étapes (steps) dans les segments
+            var steps = itineraryObject["routes"][0]["segments"][0]["steps"];
+
+            foreach (var step in steps)
+            {
+                string instruction = step["instruction"].ToString();
+                instructionsQueue.Add(instruction);
+
+            }
+        }
+        public static void PublishInstructions(List<string> instructions)
+        {
+            try
+            {
+                // Créer un producteur
+                using (IMessageProducer producer = session.CreateProducer(destination))
+                {
+                    producer.DeliveryMode = MsgDeliveryMode.NonPersistent;
+
+                    // Supprimer tous les messages existants dans la queue
+                    ClearQueue();
+
+                    // Publier chaque instruction comme un message séparé
+                    foreach (var instruction in instructions)
+                    {
+                        ITextMessage message = session.CreateTextMessage(instruction);
+                        producer.Send(message);
+                        Console.WriteLine($"Instruction publiée : {instruction}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur lors de la publication des instructions : {ex.Message}");
+            }
+        }
+
+        private static void ClearQueue()
+        {
+            try
+            {
+                using (IMessageConsumer consumer = session.CreateConsumer(destination))
+                {
+                    Console.WriteLine("Suppression des messages existants dans la queue...");
+                    IMessage message;
+                    // Lire et consommer tous les messages existants dans la queue
+                    while ((message = consumer.Receive(TimeSpan.FromMilliseconds(500))) != null)
+                    {
+                        Console.WriteLine("Message supprimé : " + (message as ITextMessage)?.Text);
+                    }
+                    Console.WriteLine("Tous les messages existants ont été supprimés.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur lors de la suppression des messages dans la queue : {ex.Message}");
+            }
+        }
+
     }
 }
