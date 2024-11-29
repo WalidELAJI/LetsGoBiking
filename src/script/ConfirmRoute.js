@@ -1,7 +1,7 @@
 let originMarker, destinationMarker;
 let map, drawnItems;
 let startCoordinates, destinationCoordinates;
-const API_URL = 'http://localhost:8080/';
+const API_URL = 'http://localhost:5000/';
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeMap();
