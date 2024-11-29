@@ -6,14 +6,27 @@ using CsharpServer.Itinerary;
 using CsharpServer.JCDecaux;
 using CsharpServer.OpenAPIServices;
 using CsharpServer.Suggestions;
+using Apache.NMS;
+using Apache.NMS.ActiveMQ;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace CsharpServer
 {
     class Program
     {
+        static List<string> instructionsQueue = new List<string>(); // Queue pour stocker les instructions de la requête en cours
+        static IConnection connection;
+        static ISession session;
+        static IDestination destination;
+
         static void Main(string[] args)
         {
+            // Initialiser la connexion à ActiveMQ et créer une queue
+            InitializeActiveMQ("InstructionQueue");
+
             Start();
         }
 
@@ -30,6 +43,30 @@ namespace CsharpServer
                 _ = HandleRequest(context); // Fire and forget to handle requests asynchronously
             }
         }
+        /*---------- méthodes pour gérer la connexion ActiveMQ ----------*/
+        public static void InitializeActiveMQ(string queueName)
+        {
+            try
+            {
+                Uri connectUri = new Uri("activemq:tcp://localhost:61616");
+                IConnectionFactory connectionFactory = new ConnectionFactory(connectUri);
+
+                // Créer une connexion unique pour l'application
+                connection = connectionFactory.CreateConnection();
+                connection.Start();
+                // Créer une session unique
+                session = connection.CreateSession();
+                // Créer ou cibler une queue
+                destination = session.GetQueue(queueName);
+
+                Console.WriteLine($"ActiveMQ initialisé avec la queue '{queueName}' en activemq:tcp://localhost:61616");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur lors de l'initialisation de ActiveMQ : {ex.Message}");
+            }
+        }
+
 
         public static async Task HandleRequest(HttpListenerContext context)
         {
@@ -136,6 +173,62 @@ namespace CsharpServer
                             response = await ItineraryService.GenerateItinerary(
                                 parsedoriginLatitude, parsedOriginLongitude, parsedDestinationLatitude, parsedDestinationLongitude, Bike);
 
+                            //VIDER LA LISTE : après chaque requête vider la queue (si contient déjà instructions de l'ancien appel)
+                            instructionsQueue.Clear();
+
+                            // Désérialiser la réponse JSON en JObject
+                            JObject responseObject = JObject.Parse(response);
+
+                            // Vérifier si l'élément "Itinerary" existe dans la réponse (2 format de réponses possibles en fct du mode)
+                            if (responseObject["Itinerary"] != null)
+                            {
+                                var itinerary = responseObject["Itinerary"];
+
+                                // Cas 1 : pour mode "cycling" 
+                                if (itinerary.Type == JTokenType.Object &&
+                                    itinerary.Children<JProperty>().Any(p => p.Name == "OriginToStation" || p.Name == "StationToStation" || p.Name == "StationToDestination"))
+                                {
+                                    
+                                    foreach (var property in itinerary.Children<JProperty>()) 
+                                    {
+                                        // Chaque "property" contient une clé et une valeur
+                                        string propertyName = property.Name;
+                                        string itineraryJson = property.Value.ToString();
+
+                                        // Vérifier que la chaîne JSON est valide avant de l'envoyer à ExtractInstructions
+                                        if (!string.IsNullOrEmpty(itineraryJson))
+                                        {
+                                            // Extrait que les instructions pour chaque segment
+                                            ExtractInstructions(itineraryJson);
+                                        }
+                                    }
+                                }
+                                // Cas 2 : pour mode "walking"
+                                else if (itinerary.Type == JTokenType.String)
+                                {
+                                    string itineraryJson = itinerary.ToString();
+
+                                    if (!string.IsNullOrEmpty(itineraryJson))
+                                    {
+                                        ExtractInstructions(itineraryJson);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Format inattendu pour l'objet Itinerary.");
+                                }
+
+                                // Publier les instructions sur la queue
+                                PublishInstructions(instructionsQueue);
+                            }
+                            else
+                            {
+                                Console.WriteLine("L'élément 'Itinerary' est absent de la réponse.");
+                            }
+
+
+
+
                             context.Response.StatusCode = 200; // OK
                         }
                         catch (FormatException ex)
@@ -195,5 +288,75 @@ namespace CsharpServer
                 }
             }
         }
+
+
+        public static void ExtractInstructions(string itineraryJson)
+        {
+            // Désérialiser la chaîne JSON en un objet JObject
+            JObject itineraryObject = JObject.Parse(itineraryJson);
+
+            // Parcourir les étapes (steps) dans les segments
+            var steps = itineraryObject["routes"][0]["segments"][0]["steps"];
+
+            foreach (var step in steps)
+            {
+                string instruction = step["instruction"].ToString();
+                instructionsQueue.Add(instruction);
+
+            }
+        }
+
+
+        public static void PublishInstructions(List<string> instructions)
+        {
+            try
+            {
+                // Créer un producteur
+                using (IMessageProducer producer = session.CreateProducer(destination))
+                {
+                    producer.DeliveryMode = MsgDeliveryMode.NonPersistent;
+
+                    // Supprimer tous les messages existants dans la queue
+                    ClearQueue();
+
+                    // Publier chaque instruction comme un message séparé
+                    foreach (var instruction in instructions)
+                    {
+                        ITextMessage message = session.CreateTextMessage(instruction);
+                        producer.Send(message);
+                        Console.WriteLine($"Instruction publiée : {instruction}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur lors de la publication des instructions : {ex.Message}");
+            }
+        }
+
+        private static void ClearQueue()
+        {
+            try
+            {
+                using (IMessageConsumer consumer = session.CreateConsumer(destination))
+                {
+                    Console.WriteLine("Suppression des messages existants dans la queue...");
+                    IMessage message;
+                    // Lire et consommer tous les messages existants dans la queue
+                    while ((message = consumer.Receive(TimeSpan.FromMilliseconds(500))) != null)
+                    {
+                        Console.WriteLine("Message supprimé : " + (message as ITextMessage)?.Text);
+                    }
+                    Console.WriteLine("Tous les messages existants ont été supprimés.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur lors de la suppression des messages dans la queue : {ex.Message}");
+            }
+        }
+
+
+
     }
 }
