@@ -16,7 +16,7 @@ namespace CsharpServer.OpenAPIServices
         /// </summary>
         /// <param name="query">The search query (e.g., an address or location name).</param>
         /// <returns>A list of dynamic objects containing geocode results.</returns>
-        public static async Task<List<dynamic>> GeocodeQuery(string query)
+        public async Task<List<dynamic>> GeocodeQuery(string query)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace CsharpServer.OpenAPIServices
         /// <param name="latitude">The latitude of the location.</param>
         /// <param name="longitude">The longitude of the location.</param>
         /// <returns>The name of the city as a string.</returns>
-        public static async Task<string> ReverseGeocodeQuery(double latitude, double longitude)
+        public async Task<string> ReverseGeocodeQuery(double latitude, double longitude)
         {
             try
             {

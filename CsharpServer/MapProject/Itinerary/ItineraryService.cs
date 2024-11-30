@@ -3,12 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using CsharpServer.JCDecaux;
 using CsharpServer.OpenAPIServices;
+using MapProject.Proxy;
 
 namespace CsharpServer.Itinerary
 {
     public class ItineraryService
     {
-
+        
         // Calculate the approximate distance between two geographical points using Euclidean distance
         // This approximation is suitable for small distances and provides similar results to the Haversine formula.
         private static double EuclideanDistance(double lat1, double lon1, double lat2, double lon2)
@@ -22,24 +23,24 @@ namespace CsharpServer.Itinerary
             // Approximation of Cartesian distances
             double x = deltaLon * Math.Cos((phi1 + phi2) / 2); // Adjust for convergence of meridians
             double y = deltaLat;
-
             // Return the Euclidean distance scaled to Earth's radius
             return Math.Sqrt(x * x + y * y) * R;
         }
 
-        public static async Task<string> GenerateItinerary(double originLatitude, double originLongitude, double destinationLatitude, double destinationLongitude, bool Bike)
+        public async Task<string> GenerateItinerary(double originLatitude, double originLongitude, double destinationLatitude, double destinationLongitude, bool Bike)
         {
+            ProxyService proxyService = new ProxyService();
             try
             {
                 // Retrieve the city names for the origin and destination using reverse geocoding
                 // Reverse geocoding converts latitude and longitude into a human-readable location (city name).
-                string originCity = await OpenStreetAPIService.ReverseGeocodeQuery(originLatitude, originLongitude);
-                string destinationCity = await OpenStreetAPIService.ReverseGeocodeQuery(destinationLatitude, destinationLongitude);
+                string originCity = await proxyService.getAPIReverseGeocode(originLatitude, originLongitude);
+                string destinationCity = await proxyService.getAPIReverseGeocode(destinationLatitude, destinationLongitude);
 
                 // Fetch bike stations associated with the JCDecaux contracts for the identified cities
                 // JCDecauxService retrieves a list of bike stations available in the specified city.
-                var originStations = JCDecauxService.GetBikeStations(originCity);
-                var destinationStations = JCDecauxService.GetBikeStations(destinationCity);
+                var originStations = await proxyService.GetStationsJcdecaux(originCity);
+                var destinationStations = await proxyService.GetStationsJcdecaux(destinationCity);
 
                 // Identify the nearest station with available bikes near the origin
                 // Closest station is determined based on distance and bike availability.
@@ -61,21 +62,21 @@ namespace CsharpServer.Itinerary
                     // If bike stations are available, calculate the bike route between the stations
 
                     // Calculate the route between the two closest stations (station-to-station route)
-                    string stationToStationItinerary = await OpenRouteAPIService.CalculateItinerary(
+                    string stationToStationItinerary = await proxyService.getCalculatedItinerary(
                         closestOriginStation.Latitude, closestOriginStation.Longitude,
                         closestDestinationStation.Latitude, closestDestinationStation.Longitude,
                         Bike: true // Ensure biking is used for station-to-station travel
                     );
 
                     // Calculate the walking/biking route from the origin to the nearest origin station
-                    string originToStationItinerary = await OpenRouteAPIService.CalculateItinerary(
+                    string originToStationItinerary = await proxyService.getCalculatedItinerary(
                         originLatitude, originLongitude,
                         closestOriginStation.Latitude, closestOriginStation.Longitude,
                         Bike: !Bike // Walk if the main mode is bike, otherwise bike
                     );
 
                     // Calculate the walking/biking route from the destination station to the final destination
-                    string stationToDestinationItinerary = await OpenRouteAPIService.CalculateItinerary(
+                    string stationToDestinationItinerary = await proxyService.getCalculatedItinerary(
                         closestDestinationStation.Latitude, closestDestinationStation.Longitude,
                         destinationLatitude, destinationLongitude,
                         Bike: !Bike // Walk if the main mode is bike, otherwise bike
@@ -100,7 +101,7 @@ namespace CsharpServer.Itinerary
                     // If bike stations are unavailable or biking is not preferred, calculate a direct route
 
                     // Calculate the direct route from origin to destination without involving bike stations
-                    string directItinerary = await OpenRouteAPIService.CalculateItinerary(
+                    string directItinerary = await proxyService.getCalculatedItinerary(
                         originLatitude, originLongitude,
                         destinationLatitude, destinationLongitude,
                         Bike: Bike // Use the selected travel mode (bike or walk)

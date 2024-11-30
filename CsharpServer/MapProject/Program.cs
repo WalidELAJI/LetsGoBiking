@@ -11,6 +11,9 @@ using Apache.NMS.ActiveMQ;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using MapProject.Proxy;
+using System.ServiceModel.Description;
+using System.ServiceModel;
 
 
 namespace CsharpServer
@@ -22,12 +25,23 @@ namespace CsharpServer
         static ISession session;
         static IDestination destination;
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            // Initialiser la connexion à ActiveMQ et créer une queue
-            InitializeActiveMQ("InstructionQueue");
+            var tasks = new List<Task>
+            {
+                Task.Run(StartProxyServer),
+                Task.Run(() => InitializeActiveMQ("InstructionQueue")),
+                Task.Run(Start)
+            };
 
-            Start();
+            try
+            {
+                await Task.WhenAll(tasks);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Critical error: {ex.Message}");
+            }
         }
 
         public static void Start()
@@ -67,6 +81,100 @@ namespace CsharpServer
             }
         }
 
+        /* public static void StartProxyServer()
+         {
+             Uri baseAddress = new Uri("http://localhost:8082/ProxyService");
+             try
+             {
+                 using (ServiceHost host = new ServiceHost(typeof(ProxyService), baseAddress))
+                 {
+                     if (!host.Description.Behaviors.Any(b => b is ServiceMetadataBehavior))
+                     {
+                         ServiceMetadataBehavior smb = new ServiceMetadataBehavior
+                         {
+                             HttpGetEnabled = true
+                         };
+                         host.Description.Behaviors.Add(smb);
+                     }
+
+                     //configuration de la communication du service SOAP
+                     var binding = new BasicHttpBinding
+                     {
+                         MaxReceivedMessageSize = 52428800, // 50 MB
+                         MaxBufferSize = 52428800,
+                         MaxBufferPoolSize = 52428800,
+                         Security = { Mode = BasicHttpSecurityMode.None },
+                         OpenTimeout = TimeSpan.FromMinutes(2),
+                         CloseTimeout = TimeSpan.FromMinutes(2),
+                         SendTimeout = TimeSpan.FromMinutes(5),
+                         ReceiveTimeout = TimeSpan.FromMinutes(5)
+                     };
+
+                     host.AddServiceEndpoint(typeof(InterfaceProxy), binding, "");
+                     host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName,
+                         MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
+
+                     Console.WriteLine("Starting the SOAP PROXY Service...");
+                     host.Open();
+                     Console.WriteLine($"SOAP Proxy Service is running at {baseAddress}");
+
+                     Console.WriteLine("Press Enter to terminate the service.");
+                     Console.ReadLine();
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine($"Error starting SOAP Proxy Service: {ex.Message}");
+                 Console.WriteLine($"StackTrace: {ex.StackTrace}");
+             }
+         }*/
+        public static void StartProxyServer()
+        {
+            Uri baseAddress = new Uri("http://localhost:8082/ProxyService");
+            try
+            {
+                using (ServiceHost host = new ServiceHost(typeof(ProxyService), baseAddress))
+                {
+                    if (!host.Description.Behaviors.Any(b => b is ServiceMetadataBehavior))
+                    {
+                        ServiceMetadataBehavior smb = new ServiceMetadataBehavior { HttpGetEnabled = true };
+                        host.Description.Behaviors.Add(smb);
+                    }
+
+                    var binding = new BasicHttpBinding
+                    {
+                        MaxReceivedMessageSize = 52428800,
+                        MaxBufferSize = 52428800,
+                        MaxBufferPoolSize = 52428800,
+                        Security = { Mode = BasicHttpSecurityMode.None },
+                        OpenTimeout = TimeSpan.FromMinutes(2),
+                        CloseTimeout = TimeSpan.FromMinutes(2),
+                        SendTimeout = TimeSpan.FromMinutes(5),
+                        ReceiveTimeout = TimeSpan.FromMinutes(5)
+                    };
+
+                    host.AddServiceEndpoint(typeof(InterfaceProxy), binding, "");
+                    host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName,
+                        MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
+
+                    Console.WriteLine("Starting SOAP Proxy Service...");
+                    host.Open();
+                    Console.WriteLine($"SOAP Proxy Service running at {baseAddress}");
+
+                    Console.ReadLine(); // Keep the service running
+                }
+            }
+            catch (AddressAccessDeniedException ex)
+            {
+                Console.WriteLine("Access denied. Run as administrator. ");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error starting SOAP Proxy Service: {ex.Message}");
+                Console.WriteLine($"StackTrace: {ex.StackTrace}");
+            }
+        }
+
 
         public static async Task HandleRequest(HttpListenerContext context)
         {
@@ -78,20 +186,21 @@ namespace CsharpServer
             context.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type");
 
             string response = "";
+            ProxyService proxyService = new ProxyService();
 
             try
             {
                 if (path == "/jcdecaux/stations")
                 {
                     string city = context.Request.QueryString["city"];
-                    var stations = JCDecauxService.GetBikeStations(city);
+                    var stations = await proxyService.GetStationsJcdecaux(city);
                     response = Newtonsoft.Json.JsonConvert.SerializeObject(stations);
                     context.Response.StatusCode = 200; // OK
                 }
                 else if (path == "/openstreetmap/geocode")
                 {
                     string query = context.Request.QueryString["query"];
-                    var geocodeResponse = await OpenStreetAPIService.GeocodeQuery(query);
+                    var geocodeResponse = await proxyService.getAPIGeocode(query);
                     response = Newtonsoft.Json.JsonConvert.SerializeObject(geocodeResponse);
                     context.Response.StatusCode = 200; // OK
                 }
@@ -99,7 +208,7 @@ namespace CsharpServer
                 {
                     string latitude = context.Request.QueryString["lat"];
                     string longitude = context.Request.QueryString["lon"];
-                    var responseReverted = await OpenStreetAPIService.ReverseGeocodeQuery(
+                    var responseReverted = await proxyService.getAPIReverseGeocode(
                         double.Parse(latitude, System.Globalization.CultureInfo.InvariantCulture),
                         double.Parse(longitude, System.Globalization.CultureInfo.InvariantCulture)
                     );
@@ -170,7 +279,7 @@ namespace CsharpServer
                             bool Bike = mode == "cycling"; // Determine the mode
 
                             // Call the ItineraryService
-                            response = await ItineraryService.GenerateItinerary(
+                            response = await proxyService.getGeneratedItinerary(
                                 parsedoriginLatitude, parsedOriginLongitude, parsedDestinationLatitude, parsedDestinationLongitude, Bike);
 
                             //VIDER LA LISTE : après chaque requête vider la queue (si contient déjà instructions de l'ancien appel)

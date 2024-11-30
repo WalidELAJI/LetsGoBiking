@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace CsharpServer.JCDecaux
 {
@@ -15,7 +16,7 @@ namespace CsharpServer.JCDecaux
         /// </summary>
         /// <param name="city">The name of the city for which bike station data is requested.</param>
         /// <returns>A list of BikeStation objects representing the bike stations in the city.</returns>
-        public static List<BikeStation> GetBikeStations(string city)
+        public async Task<List<BikeStation>> GetBikeStations(string city)
         {
             // Encode the city name to ensure it is safe for use in a URL
             string encodedCity = Uri.EscapeDataString(city);
@@ -28,6 +29,8 @@ namespace CsharpServer.JCDecaux
             {
                 try
                 {
+                    webclient.Headers.Add("User-Agent", "C# WebClient"); // Add a user agent header to the request
+
                     // Fetch the raw JSON data from the API
                     string json = webclient.DownloadString(url);
 

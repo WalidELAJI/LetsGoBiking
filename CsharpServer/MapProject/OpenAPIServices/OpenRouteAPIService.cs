@@ -21,7 +21,7 @@ namespace CsharpServer.OpenAPIServices
         /// <param name="destinationLongitude">Longitude of the destination point.</param>
         /// <param name="Bike">Specifies whether the route is for biking (true) or walking (false).</param>
         /// <returns>The JSON response from OpenRouteService as a string.</returns>
-        public static async Task<string> CalculateItinerary(double originLatitude, double originLongitude, double destinationLatitude, double destinationLongitude, bool Bike)
+        public async Task<string> CalculateItinerary(double originLatitude, double originLongitude, double destinationLatitude, double destinationLongitude, bool Bike)
         {
             // Select the transportation profile based on the useBike parameter
             string profile = Bike ? "cycling-regular" : "foot-walking"; // Biking or walking profile
