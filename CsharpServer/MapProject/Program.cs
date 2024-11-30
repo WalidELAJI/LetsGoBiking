@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using CsharpServer.Itinerary;
 using CsharpServer.JCDecaux;
 using CsharpServer.OpenAPIServices;
-using CsharpServer.Suggestions;
 
 
 namespace CsharpServer
@@ -68,41 +67,6 @@ namespace CsharpServer
                     );
                     response = Newtonsoft.Json.JsonConvert.SerializeObject(responseReverted);
                     context.Response.StatusCode = 200; // OK
-                }
-                else if (path == "/suggestions")
-                {
-                    string query = context.Request.QueryString["query"];
-
-                    if (string.IsNullOrWhiteSpace(query))
-                    {
-                        response = "{\"error\": \"Missing required query parameter: query.\"}";
-                        context.Response.StatusCode = 400; // Bad Request
-                    }
-                    else
-                    {
-                        try
-                        {
-                            // Call the suggestion service
-                            var suggestions = await SuggestionService.GetSuggestions(query);
-
-                            // Serialize the result as JSON
-                            response = Newtonsoft.Json.JsonConvert.SerializeObject(suggestions);
-                            context.Response.StatusCode = 200; // OK
-                        }
-                        catch (Exception ex)
-                        {
-                            response = "{\"error\": \"An unexpected error occurred while fetching suggestions.\"}";
-                            context.Response.StatusCode = 500; // Internal Server Error
-                        }
-                    }
-
-                    // Write the response
-                    context.Response.ContentType = "application/json";
-                    using (var streamwriter = new StreamWriter(context.Response.OutputStream))
-                    {
-                        streamwriter.Write(response);
-                        streamwriter.Flush();
-                    }
                 }
 
                 else if (path == "/itinerary")

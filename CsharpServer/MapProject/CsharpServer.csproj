@@ -54,8 +54,6 @@
     <Compile Include="OpenAPIServices\RouteCoordinates.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Suggestions\SuggestionDetails.cs" />
-    <Compile Include="Suggestions\SuggestionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

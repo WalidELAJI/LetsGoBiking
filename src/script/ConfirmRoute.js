@@ -272,55 +272,54 @@ function getSelectedMode() {
 }
 
 // Auto-complétion
+// Fonction mise à jour pour gérer l'auto-complétion
 function setupAutocomplete(inputId, callback) {
     const input = document.getElementById(inputId);
+    const suggestionBox = document.createElement('div'); // Crée un conteneur pour les suggestions
+    suggestionBox.classList.add('suggestion-box');
+    input.parentNode.appendChild(suggestionBox); // Ajoute le conteneur après l'input
+
     input.addEventListener('input', function () {
-        const query = input.value;
-        if (query.length > 2) {
-            fetchSuggestions(query, suggestions => displaySuggestions(input, suggestions, callback));
+        const query = input.value.trim();
+        if (query.length > 2) { // Ne pas déclencher si moins de 3 caractères
+            fetchSuggestions(query, suggestions => displaySuggestions(input, suggestionBox, suggestions, callback));
+        } else {
+            suggestionBox.innerHTML = ''; // Efface les suggestions si le texte est trop court
         }
     });
 }
 
+// Fonction pour récupérer les suggestions via l'API française
 function fetchSuggestions(query, callback) {
-    const url = `${API_URL}suggestions?query=${encodeURIComponent(query)}`;
-    console.log('URL pour suggestions :', url);
-
+    const url = `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5&autocomplete=1`;
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const suggestions = data.map(item => ({
-                displayName: item.display_name,
-                coordinates: [parseFloat(item.lat), parseFloat(item.lon)],
+            const suggestions = data.features.map(feature => ({
+                name: feature.properties.label,
+                coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
             }));
-            console.log("Suggestions reçues :", suggestions);
             callback(suggestions);
         })
         .catch(error => console.error('Erreur lors de la récupération des suggestions :', error));
 }
 
-function displaySuggestions(input, suggestions, callback) {
-    const suggestionBox = input.nextElementSibling || document.createElement('div');
-    suggestionBox.innerHTML = '';
-    suggestionBox.classList.add('suggestion-box');
-
+// Affichage des suggestions sous l'input
+function displaySuggestions(input, suggestionBox, suggestions, callback) {
+    suggestionBox.innerHTML = ''; // Vide les suggestions précédentes
     suggestions.forEach(suggestion => {
         const item = document.createElement('div');
         item.classList.add('suggestion-item');
-        item.textContent = suggestion.displayName;
-        item.onclick = () => {
-            input.value = suggestion.displayName;
-            callback(suggestion.coordinates);
-            suggestionBox.innerHTML = '';
-        };
+        item.textContent = suggestion.name;
+        item.addEventListener('click', () => {
+            input.value = suggestion.name; // Remplit le champ avec la suggestion choisie
+            suggestionBox.innerHTML = ''; // Efface les suggestions après sélection
+            callback(suggestion.coordinates); // Passe les coordonnées au callback
+        });
         suggestionBox.appendChild(item);
     });
-
-    if (!input.nextElementSibling) {
-        input.parentElement.appendChild(suggestionBox);
-    }
-    console.log("Suggestions affichées pour :", input.id, suggestions);
 }
+
 
 function extractInstructions(segments) {
     const instructions = [];

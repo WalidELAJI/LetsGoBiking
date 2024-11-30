@@ -7,14 +7,6 @@
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\mapproject\\suggestions\\suggestiondetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|solutionrelative:mapproject\\suggestions\\suggestiondetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\mapproject\\suggestions\\suggestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|solutionrelative:mapproject\\suggestions\\suggestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\mapproject\\openapiservices\\routecoordinates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|solutionrelative:mapproject\\openapiservices\\routecoordinates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -46,11 +38,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "ItineraryService.cs",
               "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\Itinerary\\ItineraryService.cs",
               "RelativeDocumentMoniker": "MapProject\\Itinerary\\ItineraryService.cs",
@@ -62,7 +54,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "OpenStreetAPIService.cs",
               "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\OpenAPIServices\\OpenStreetAPIService.cs",
               "RelativeDocumentMoniker": "MapProject\\OpenAPIServices\\OpenStreetAPIService.cs",
@@ -74,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "OpenRouteAPIService.cs",
               "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\OpenAPIServices\\OpenRouteAPIService.cs",
               "RelativeDocumentMoniker": "MapProject\\OpenAPIServices\\OpenRouteAPIService.cs",
@@ -86,7 +78,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "RouteCoordinates.cs",
               "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\OpenAPIServices\\RouteCoordinates.cs",
               "RelativeDocumentMoniker": "MapProject\\OpenAPIServices\\RouteCoordinates.cs",
@@ -98,31 +90,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SuggestionService.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionService.cs",
-              "RelativeDocumentMoniker": "MapProject\\Suggestions\\SuggestionService.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionService.cs",
-              "RelativeToolTip": "MapProject\\Suggestions\\SuggestionService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T14:49:17.72Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SuggestionDetails.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionDetails.cs",
-              "RelativeDocumentMoniker": "MapProject\\Suggestions\\SuggestionDetails.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionDetails.cs",
-              "RelativeToolTip": "MapProject\\Suggestions\\SuggestionDetails.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T14:49:15.58Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "JCDecauxService.cs",
               "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\JCDecaux\\JCDecauxService.cs",
               "RelativeDocumentMoniker": "MapProject\\JCDecaux\\JCDecauxService.cs",
@@ -134,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "BikeStation.cs",
               "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\JCDecaux\\BikeStation.cs",
               "RelativeDocumentMoniker": "MapProject\\JCDecaux\\BikeStation.cs",
@@ -152,7 +120,7 @@
               "RelativeDocumentMoniker": "MapProject\\Program.cs",
               "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\CsharpServer\\MapProject\\Program.cs",
               "RelativeToolTip": "MapProject\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAwwCoAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-27T09:50:52.676Z",
               "EditorCaption": ""
