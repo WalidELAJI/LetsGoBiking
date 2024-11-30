@@ -101,6 +101,34 @@ function drawItineraryOnMap(data) {
     placePin(startCoordinates, "Point de départ");
     placePin(destinationCoordinates, "Point d'arrivée");
 
+    if (data.UseBike && (!data.ClosestOriginStation || !data.ClosestDestinationStation)) {
+        console.warn("Aucun contrat trouvé pour les vélos dans cette ville. Calcul d'un itinéraire direct à vélo.");
+
+        try {
+            const directItinerary = parseItinerary(data.Itinerary);
+            if (directItinerary && directItinerary.routes && directItinerary.routes[0].geometry) {
+                const coordinates = decodePolyline(directItinerary.routes[0].geometry);
+                L.polyline(coordinates, { color: "blue", weight: 4 }).addTo(drawnItems);
+                console.log("Itinéraire direct à vélo tracé :", coordinates);
+
+                // Extraire les instructions
+                if (directItinerary.routes[0].segments) {
+                    const instructions = extractInstructions(directItinerary.routes[0].segments);
+                    displayInstructions(instructions);
+                } else {
+                    console.warn("Pas d'instructions pour l'itinéraire direct.");
+                }
+            } else {
+                console.warn("Itinéraire direct mal formé ou sans géométrie.");
+                showNotification("Aucun itinéraire direct valide trouvé.");
+            }
+        } catch (error) {
+            console.error("Erreur lors du traitement de l'itinéraire direct :", error);
+            showNotification("Erreur lors de la récupération de l'itinéraire direct.");
+        }
+        return;
+    }
+
     if (data.UseBike === false) {
         console.log("Mode walking détecté. Traçage direct de l'itinéraire.");
         const walkingItinerary = parseItinerary(data.Itinerary);
@@ -275,9 +303,13 @@ function getSelectedMode() {
 // Fonction mise à jour pour gérer l'auto-complétion
 function setupAutocomplete(inputId, callback) {
     const input = document.getElementById(inputId);
-    const suggestionBox = document.createElement('div'); // Crée un conteneur pour les suggestions
-    suggestionBox.classList.add('suggestion-box');
-    input.parentNode.appendChild(suggestionBox); // Ajoute le conteneur après l'input
+    let suggestionBox;
+    if (inputId=='origin'){
+        suggestionBox = document.getElementById('suggestion-box');
+    }
+    else {
+        suggestionBox = document.getElementById('suggestion-box-1');
+    }
 
     input.addEventListener('input', function () {
         const query = input.value.trim();
