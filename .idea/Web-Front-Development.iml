@@ -8,6 +8,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="leaflet-geometryutil" level="application" />
+    <orderEntry type="library" name="sockjs-client" level="application" />
+    <orderEntry type="library" name="leaflet-control-geocoder" level="application" />
     <orderEntry type="library" name="leaflet" level="application" />
+    <orderEntry type="library" name="stompjs" level="application" />
   </component>
 </module>
