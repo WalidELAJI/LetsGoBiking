@@ -7,7 +7,31 @@
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\proxy\\cacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\proxy\\proxyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\proxy\\proxyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\openapiservices\\openrouteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\openapiservices\\openrouteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\jcdecaux\\jcdecauxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\jcdecaux\\jcdecauxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\itinerary\\itineraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\itinerary\\itineraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\proxy\\cacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\proxy\\cacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,52 +39,20 @@
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\proxy\\interfaceproxy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\jcdecaux\\jcdecauxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\jcdecaux\\jcdecauxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\suggestions\\suggestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\suggestions\\suggestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\suggestions\\suggestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|solutionrelative:mapproject\\suggestions\\suggestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\proxy\\proxyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\proxy\\proxyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\suggestions\\suggestiondetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\suggestions\\suggestiondetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\suggestions\\suggestiondetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|solutionrelative:mapproject\\suggestions\\suggestiondetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\openapiservices\\routecoordinates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\openapiservices\\routecoordinates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\openapiservices\\routecoordinates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\openapiservices\\openstreetapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\openapiservices\\openstreetapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\openapiservices\\openstreetapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\openapiservices\\openrouteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\openapiservices\\openrouteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\jcdecaux\\bikestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\jcdecaux\\bikestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\jcdecaux\\bikestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\jcdecaux\\bikestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|solutionrelative:mapproject\\jcdecaux\\bikestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|e:\\documents\\polytech_s7\\java_rmi\\projetsdossier\\arrangerjs_activemq\\web-front-development\\csharpserver\\mapproject\\itinerary\\itineraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\CsharpServer.csproj|solutionrelative:mapproject\\itinerary\\itineraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3B7E6767-D25E-467A-8E27-3008BD8AB3B5}|MapProject\\MapProject.csproj|E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\mapproject\\jcdecaux\\jcdecauxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,11 +82,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "InterfaceProxy.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Proxy\\InterfaceProxy.cs",
               "RelativeDocumentMoniker": "MapProject\\Proxy\\InterfaceProxy.cs",
@@ -103,50 +95,35 @@
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAwAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-29T22:15:14.376Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "packages.config",
+              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\packages.config",
+              "RelativeDocumentMoniker": "MapProject\\packages.config",
+              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\packages.config",
+              "RelativeToolTip": "MapProject\\packages.config",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-12-01T11:42:42.677Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CacheService.cs",
-              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Proxy\\CacheService.cs",
-              "RelativeDocumentMoniker": "MapProject\\Proxy\\CacheService.cs",
-              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Proxy\\CacheService.cs",
-              "RelativeToolTip": "MapProject\\Proxy\\CacheService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T19:22:40.326Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SuggestionService.cs",
-              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionService.cs",
-              "RelativeDocumentMoniker": "MapProject\\Suggestions\\SuggestionService.cs",
-              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionService.cs",
-              "RelativeToolTip": "MapProject\\Suggestions\\SuggestionService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T11:10:55.06Z",
-              "EditorCaption": ""
+              "Title": "App.config",
+              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\App.config",
+              "RelativeDocumentMoniker": "MapProject\\App.config",
+              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\App.config",
+              "RelativeToolTip": "MapProject\\App.config",
+              "ViewState": "AQIAACsAAAAAAAAAAAAAAD8AAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-12-01T11:42:37.926Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "SuggestionService.cs",
-              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionService.cs",
-              "RelativeDocumentMoniker": "MapProject\\Suggestions\\SuggestionService.cs",
-              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionService.cs",
-              "RelativeToolTip": "MapProject\\Suggestions\\SuggestionService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T14:49:17.72Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "JCDecauxService.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\JCDecaux\\JCDecauxService.cs",
               "RelativeDocumentMoniker": "MapProject\\JCDecaux\\JCDecauxService.cs",
@@ -154,8 +131,7 @@
               "RelativeToolTip": "MapProject\\JCDecaux\\JCDecauxService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T10:55:24.918Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T10:55:24.918Z"
             },
             {
               "$type": "Document",
@@ -165,14 +141,14 @@
               "RelativeDocumentMoniker": "MapProject\\Program.cs",
               "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Program.cs",
               "RelativeToolTip": "MapProject\\Program.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAABAAAAAAAAAA",
+              "ViewState": "AQIAAJMBAAAAAAAAAAAAwJ4BAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-27T09:50:52.676Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "ProxyService.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Proxy\\ProxyService.cs",
               "RelativeDocumentMoniker": "MapProject\\Proxy\\ProxyService.cs",
@@ -180,46 +156,19 @@
               "RelativeToolTip": "MapProject\\Proxy\\ProxyService.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAAD4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T22:31:06.465Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-29T22:31:06.465Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SuggestionDetails.cs",
-              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionDetails.cs",
-              "RelativeDocumentMoniker": "MapProject\\Suggestions\\SuggestionDetails.cs",
-              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionDetails.cs",
-              "RelativeToolTip": "MapProject\\Suggestions\\SuggestionDetails.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T14:49:15.58Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SuggestionDetails.cs",
-              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionDetails.cs",
-              "RelativeDocumentMoniker": "MapProject\\Suggestions\\SuggestionDetails.cs",
-              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Suggestions\\SuggestionDetails.cs",
-              "RelativeToolTip": "MapProject\\Suggestions\\SuggestionDetails.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T11:10:51.854Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 4,
               "Title": "OpenRouteAPIService.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\OpenAPIServices\\OpenRouteAPIService.cs",
               "RelativeDocumentMoniker": "MapProject\\OpenAPIServices\\OpenRouteAPIService.cs",
               "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\OpenAPIServices\\OpenRouteAPIService.cs",
               "RelativeToolTip": "MapProject\\OpenAPIServices\\OpenRouteAPIService.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAcwBgAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T10:22:31.967Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T10:22:31.967Z"
             },
             {
               "$type": "Document",
@@ -231,8 +180,7 @@
               "RelativeToolTip": "MapProject\\OpenAPIServices\\OpenStreetAPIService.cs",
               "ViewState": "AQIAADQAAAAAAAAAAAAmwDMAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T10:23:28.379Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T10:23:28.379Z"
             },
             {
               "$type": "Document",
@@ -244,12 +192,35 @@
               "RelativeToolTip": "MapProject\\OpenAPIServices\\RouteCoordinates.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T10:23:43.798Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T10:23:43.798Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 6,
+              "Title": "ItineraryService.cs",
+              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Itinerary\\ItineraryService.cs",
+              "RelativeDocumentMoniker": "MapProject\\Itinerary\\ItineraryService.cs",
+              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Itinerary\\ItineraryService.cs",
+              "RelativeToolTip": "MapProject\\Itinerary\\ItineraryService.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowG8AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-30T10:24:39.066Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CacheService.cs",
+              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Proxy\\CacheService.cs",
+              "RelativeDocumentMoniker": "MapProject\\Proxy\\CacheService.cs",
+              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Proxy\\CacheService.cs",
+              "RelativeToolTip": "MapProject\\Proxy\\CacheService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-30T19:22:40.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "BikeStation.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\JCDecaux\\BikeStation.cs",
               "RelativeDocumentMoniker": "MapProject\\JCDecaux\\BikeStation.cs",
@@ -257,12 +228,11 @@
               "RelativeToolTip": "MapProject\\JCDecaux\\BikeStation.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T11:10:34.961Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T11:10:34.961Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "BikeStation.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\JCDecaux\\BikeStation.cs",
               "RelativeDocumentMoniker": "MapProject\\JCDecaux\\BikeStation.cs",
@@ -274,20 +244,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ItineraryService.cs",
-              "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Itinerary\\ItineraryService.cs",
-              "RelativeDocumentMoniker": "MapProject\\Itinerary\\ItineraryService.cs",
-              "ToolTip": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Itinerary\\ItineraryService.cs",
-              "RelativeToolTip": "MapProject\\Itinerary\\ItineraryService.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwG8AAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T10:24:39.066Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 13,
               "Title": "JCDecauxService.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\JCDecaux\\JCDecauxService.cs",
               "RelativeDocumentMoniker": "MapProject\\JCDecaux\\JCDecauxService.cs",
@@ -299,7 +256,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 15,
               "Title": "RouteCoordinates.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\OpenAPIServices\\RouteCoordinates.cs",
               "RelativeDocumentMoniker": "MapProject\\OpenAPIServices\\RouteCoordinates.cs",
@@ -311,7 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 14,
               "Title": "ItineraryService.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\Itinerary\\ItineraryService.cs",
               "RelativeDocumentMoniker": "MapProject\\Itinerary\\ItineraryService.cs",
@@ -323,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 17,
               "Title": "OpenRouteAPIService.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\OpenAPIServices\\OpenRouteAPIService.cs",
               "RelativeDocumentMoniker": "MapProject\\OpenAPIServices\\OpenRouteAPIService.cs",
@@ -335,7 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 16,
               "Title": "OpenStreetAPIService.cs",
               "DocumentMoniker": "E:\\Documents\\Polytech_S7\\Java_RMI\\projetsDossier\\arrangerJS_ActiveMq\\Web-Front-Development\\CsharpServer\\MapProject\\OpenAPIServices\\OpenStreetAPIService.cs",
               "RelativeDocumentMoniker": "MapProject\\OpenAPIServices\\OpenStreetAPIService.cs",

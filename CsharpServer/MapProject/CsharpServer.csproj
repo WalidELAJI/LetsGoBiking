@@ -74,8 +74,6 @@
     <Compile Include="Proxy\CacheService.cs" />
     <Compile Include="Proxy\ProxyService.cs" />
     <Compile Include="Proxy\InterfaceProxy.cs" />
-    <Compile Include="Suggestions\SuggestionDetails.cs" />
-    <Compile Include="Suggestions\SuggestionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

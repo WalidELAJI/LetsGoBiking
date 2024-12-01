@@ -101,6 +101,34 @@ function drawItineraryOnMap(data) {
     placePin(startCoordinates, "Point de départ");
     placePin(destinationCoordinates, "Point d'arrivée");
 
+    if (data.UseBike && (!data.ClosestOriginStation || !data.ClosestDestinationStation)) {
+        console.warn("Aucun contrat trouvé pour les vélos dans cette ville. Calcul d'un itinéraire direct à vélo.");
+
+        try {
+            const directItinerary = parseItinerary(data.Itinerary);
+            if (directItinerary && directItinerary.routes && directItinerary.routes[0].geometry) {
+                const coordinates = decodePolyline(directItinerary.routes[0].geometry);
+                L.polyline(coordinates, { color: "blue", weight: 4 }).addTo(drawnItems);
+                console.log("Itinéraire direct à vélo tracé :", coordinates);
+
+                // Extraire les instructions
+                if (directItinerary.routes[0].segments) {
+                    const instructions = extractInstructions(directItinerary.routes[0].segments);
+                    displayInstructions(instructions);
+                } else {
+                    console.warn("Pas d'instructions pour l'itinéraire direct.");
+                }
+            } else {
+                console.warn("Itinéraire direct mal formé ou sans géométrie.");
+                showNotification("Aucun itinéraire direct valide trouvé.");
+            }
+        } catch (error) {
+            console.error("Erreur lors du traitement de l'itinéraire direct :", error);
+            showNotification("Erreur lors de la récupération de l'itinéraire direct.");
+        }
+        return;
+    }
+
     if (data.UseBike === false) {
         console.log("Mode walking détecté. Traçage direct de l'itinéraire.");
         const walkingItinerary = parseItinerary(data.Itinerary);
@@ -272,55 +300,58 @@ function getSelectedMode() {
 }
 
 // Auto-complétion
+// Fonction mise à jour pour gérer l'auto-complétion
 function setupAutocomplete(inputId, callback) {
     const input = document.getElementById(inputId);
+    let suggestionBox;
+    if (inputId=='origin'){
+        suggestionBox = document.getElementById('suggestion-box');
+    }
+    else {
+        suggestionBox = document.getElementById('suggestion-box-1');
+    }
+
     input.addEventListener('input', function () {
-        const query = input.value;
-        if (query.length > 2) {
-            fetchSuggestions(query, suggestions => displaySuggestions(input, suggestions, callback));
+        const query = input.value.trim();
+        if (query.length > 2) { // Ne pas déclencher si moins de 3 caractères
+            fetchSuggestions(query, suggestions => displaySuggestions(input, suggestionBox, suggestions, callback));
+        } else {
+            suggestionBox.innerHTML = ''; // Efface les suggestions si le texte est trop court
         }
     });
 }
 
+// Fonction pour récupérer les suggestions via l'API française
 function fetchSuggestions(query, callback) {
-    const url = `${API_URL}suggestions?query=${encodeURIComponent(query)}`;
-    console.log('URL pour suggestions :', url);
-
+    const url = `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5&autocomplete=1`;
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const suggestions = data.map(item => ({
-                displayName: item.display_name,
-                coordinates: [parseFloat(item.lat), parseFloat(item.lon)],
+            const suggestions = data.features.map(feature => ({
+                name: feature.properties.label,
+                coordinates: [feature.geometry.coordinates[1], feature.geometry.coordinates[0]]
             }));
-            console.log("Suggestions reçues :", suggestions);
             callback(suggestions);
         })
         .catch(error => console.error('Erreur lors de la récupération des suggestions :', error));
 }
 
-function displaySuggestions(input, suggestions, callback) {
-    const suggestionBox = input.nextElementSibling || document.createElement('div');
-    suggestionBox.innerHTML = '';
-    suggestionBox.classList.add('suggestion-box');
-
+// Affichage des suggestions sous l'input
+function displaySuggestions(input, suggestionBox, suggestions, callback) {
+    suggestionBox.innerHTML = ''; // Vide les suggestions précédentes
     suggestions.forEach(suggestion => {
         const item = document.createElement('div');
         item.classList.add('suggestion-item');
-        item.textContent = suggestion.displayName;
-        item.onclick = () => {
-            input.value = suggestion.displayName;
-            callback(suggestion.coordinates);
-            suggestionBox.innerHTML = '';
-        };
+        item.textContent = suggestion.name;
+        item.addEventListener('click', () => {
+            input.value = suggestion.name; // Remplit le champ avec la suggestion choisie
+            suggestionBox.innerHTML = ''; // Efface les suggestions après sélection
+            callback(suggestion.coordinates); // Passe les coordonnées au callback
+        });
         suggestionBox.appendChild(item);
     });
-
-    if (!input.nextElementSibling) {
-        input.parentElement.appendChild(suggestionBox);
-    }
-    console.log("Suggestions affichées pour :", input.id, suggestions);
 }
+
 
 function extractInstructions(segments) {
     const instructions = [];
