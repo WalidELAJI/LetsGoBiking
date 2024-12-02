@@ -101,6 +101,16 @@ function drawItineraryOnMap(data) {
     placePin(startCoordinates, "Point de départ");
     placePin(destinationCoordinates, "Point d'arrivée");
 
+    // Calculer les durées
+    const walkingDuration = calculateTotalDuration(data, "walking");
+    const cyclingDuration = calculateTotalDuration(data, "cycling");
+
+    if (walkingDuration > 0 && cyclingDuration > 0) {
+        displayDuration(walkingDuration, cyclingDuration); // Afficher la durée
+    } else {
+        console.warn("Impossible de calculer les durées pour les deux modes de transport.");
+    }
+
     if (data.UseBike && (!data.ClosestOriginStation || !data.ClosestDestinationStation)) {
         console.warn("Aucun contrat trouvé pour les vélos dans cette ville. Calcul d'un itinéraire direct à vélo.");
 
@@ -395,4 +405,54 @@ function parseItinerary(itinerary) {
     }
     return itinerary;
 }
+
+// Fonction pour calculer la durée totale en secondes
+function calculateTotalDuration(data) {
+    let totalDuration = 0;
+
+    // Si des itinéraires segmentés existent, les parcourir
+    ["OriginToStation", "StationToStation", "StationToDestination"].forEach(key => {
+        if (data.Itinerary[key]) {
+            const segmentData = parseItinerary(data.Itinerary[key]);
+            if (segmentData && segmentData.routes && segmentData.routes[0].summary) {
+                totalDuration += segmentData.routes[0].summary.duration; // Ajouter la durée
+            }
+        }
+    });
+
+    // Si un itinéraire direct existe
+    if (data.Itinerary && typeof data.Itinerary === "string") {
+        const directItinerary = parseItinerary(data.Itinerary);
+        if (directItinerary && directItinerary.routes && directItinerary.routes[0].summary) {
+            totalDuration += directItinerary.routes[0].summary.duration; // Ajouter la durée
+        }
+    }
+
+    return totalDuration; // Retourner la durée totale en secondes
+}
+
+// Fonction pour afficher la durée totale
+// Fonction pour afficher la durée totale
+function displayDuration(walkingDuration, cyclingDuration) {
+    const durationContainer = document.getElementById("duration");
+    const mode = getSelectedMode(); // Obtenir le mode de transport sélectionné
+
+    let formattedDuration = "";
+    let additionalMessage = "";
+
+    // Définir le texte principal basé sur le mode de transport
+    if (mode === "walking") {
+        const minutes = Math.floor(walkingDuration / 60);
+        formattedDuration = `<strong>Durée totale à pieds :</strong> ${minutes} minutes`;
+    } else if (mode === "cycling") {
+        const minutes = Math.floor(cyclingDuration / 60);
+        formattedDuration = `<strong>Durée totale à vélo :</strong> ${minutes} minutes`;
+    }
+
+    // Afficher le contenu dans la div #duration
+    durationContainer.style.display = "block";
+    durationContainer.innerHTML = `${formattedDuration}${additionalMessage}`;
+    console.log("Durée totale et message affichés :", formattedDuration, additionalMessage);
+}
+
 

@@ -30,7 +30,8 @@ body, html {
 #input-box {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 20px; /* Alignement à gauche */
+    width: 300px; /* Largeur cohérente */
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
@@ -71,14 +72,14 @@ body, html {
 
 #instructions {
     position: absolute;
+    width : 21%;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20px;
+    transform: none;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 50%;
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
@@ -152,9 +153,9 @@ body, html {
 
 #instructions {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    width: 300px; /* Même largeur que #input-box et #duration */
+    bottom: 20px; /* Aligner en bas */
+    left: 20px; /* Alignement à gauche */
     max-height: 200px;
     overflow-y: auto;
     background-color: rgba(255, 255, 255, 0.9);
@@ -162,7 +163,7 @@ body, html {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
-    margin-left: 25%;
+    text-align: center;
 }
 
 #instructions h3 {
@@ -171,4 +172,19 @@ body, html {
 
 #instructions p {
     margin-bottom: 5px;
+}
+
+#duration {
+    position: absolute;
+    width: 300px; /* Même largeur que #input-box */
+    bottom: 225px; /* Ajustez selon vos besoins pour espacer */
+    left: 20px; /* Alignement à gauche */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
 }
