@@ -1,45 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\",
+  "WorkspaceRootPath": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|c:\\users\\buitro\\onedrive - universit\u00E9 c\u00F4te d\u0027azur\\bureau\\web-front-development\\routingserver\\routingserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|c:\\users\\pc\\desktop\\web-front-development\\routingserver\\routingserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\proxy\\proxyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\proxy\\proxyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\proxy\\proxyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\proxy\\interfaceproxy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\proxy\\interfaceproxy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\proxy\\interfaceproxy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\proxy\\cacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\proxy\\cacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\proxy\\cacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\openapiservices\\routecoordinates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\openapiservices\\routecoordinates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\openapiservices\\routecoordinates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\openapiservices\\openstreetapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\openapiservices\\openstreetapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\openapiservices\\openstreetapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\openapiservices\\openrouteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\openapiservices\\openrouteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\openapiservices\\openrouteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\jcdecaux\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\jcdecaux\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\jcdecaux\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\jcdecaux\\jcdecauxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\jcdecaux\\jcdecauxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\jcdecaux\\jcdecauxservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\routingserver\\itinerary\\itineraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\routingserver\\itinerary\\itineraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2935A181-B504-401B-88AD-F6A230524BF7}|RoutingServer\\RoutingServer.csproj|solutionrelative:routingserver\\itinerary\\itineraryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -50,51 +50,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProxyService.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\ProxyService.cs",
-              "RelativeDocumentMoniker": "RoutingServer\\Proxy\\ProxyService.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\ProxyService.cs",
-              "RelativeToolTip": "RoutingServer\\Proxy\\ProxyService.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwAcAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T12:48:29.587Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InterfaceProxy.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\InterfaceProxy.cs",
-              "RelativeDocumentMoniker": "RoutingServer\\Proxy\\InterfaceProxy.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\InterfaceProxy.cs",
-              "RelativeToolTip": "RoutingServer\\Proxy\\InterfaceProxy.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T12:48:13.189Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CacheService.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\CacheService.cs",
-              "RelativeDocumentMoniker": "RoutingServer\\Proxy\\CacheService.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\CacheService.cs",
-              "RelativeToolTip": "RoutingServer\\Proxy\\CacheService.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAowA8AAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T12:48:03.041Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "RouteCoordinates.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\RouteCoordinates.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\RouteCoordinates.cs",
               "RelativeDocumentMoniker": "RoutingServer\\OpenAPIServices\\RouteCoordinates.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\RouteCoordinates.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\RouteCoordinates.cs",
               "RelativeToolTip": "RoutingServer\\OpenAPIServices\\RouteCoordinates.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -104,9 +68,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "OpenStreetAPIService.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\OpenStreetAPIService.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\OpenStreetAPIService.cs",
               "RelativeDocumentMoniker": "RoutingServer\\OpenAPIServices\\OpenStreetAPIService.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\OpenStreetAPIService.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\OpenStreetAPIService.cs",
               "RelativeToolTip": "RoutingServer\\OpenAPIServices\\OpenStreetAPIService.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAAAowAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -116,9 +80,9 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "OpenRouteAPIService.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\OpenRouteAPIService.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\OpenRouteAPIService.cs",
               "RelativeDocumentMoniker": "RoutingServer\\OpenAPIServices\\OpenRouteAPIService.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\OpenRouteAPIService.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\OpenAPIServices\\OpenRouteAPIService.cs",
               "RelativeToolTip": "RoutingServer\\OpenAPIServices\\OpenRouteAPIService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -128,9 +92,9 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "JCDecauxService.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\JCDecaux\\JCDecauxService.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\JCDecaux\\JCDecauxService.cs",
               "RelativeDocumentMoniker": "RoutingServer\\JCDecaux\\JCDecauxService.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\JCDecaux\\JCDecauxService.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\JCDecaux\\JCDecauxService.cs",
               "RelativeToolTip": "RoutingServer\\JCDecaux\\JCDecauxService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -140,9 +104,9 @@
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "Station.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\JCDecaux\\Station.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\JCDecaux\\Station.cs",
               "RelativeDocumentMoniker": "RoutingServer\\JCDecaux\\Station.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\JCDecaux\\Station.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\JCDecaux\\Station.cs",
               "RelativeToolTip": "RoutingServer\\JCDecaux\\Station.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -152,9 +116,9 @@
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "ItineraryService.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Itinerary\\ItineraryService.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Itinerary\\ItineraryService.cs",
               "RelativeDocumentMoniker": "RoutingServer\\Itinerary\\ItineraryService.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Itinerary\\ItineraryService.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Itinerary\\ItineraryService.cs",
               "RelativeToolTip": "RoutingServer\\Itinerary\\ItineraryService.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAHUAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -164,14 +128,50 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Program.cs",
               "RelativeDocumentMoniker": "RoutingServer\\Program.cs",
-              "ToolTip": "C:\\Users\\buitro\\OneDrive - Universit\u00E9 C\u00F4te d\u0027Azur\\Bureau\\Web-Front-Development\\RoutingServer\\RoutingServer\\Program.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Program.cs",
               "RelativeToolTip": "RoutingServer\\Program.cs",
-              "ViewState": "AgIAAHQBAAAAAAAAAAAewIQBAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAJ8BAAAAAAAAAAAnwLQBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-01T12:43:10.17Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CacheService.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\CacheService.cs",
+              "RelativeDocumentMoniker": "RoutingServer\\Proxy\\CacheService.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\CacheService.cs",
+              "RelativeToolTip": "RoutingServer\\Proxy\\CacheService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAowA8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T12:48:03.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InterfaceProxy.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\InterfaceProxy.cs",
+              "RelativeDocumentMoniker": "RoutingServer\\Proxy\\InterfaceProxy.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\InterfaceProxy.cs",
+              "RelativeToolTip": "RoutingServer\\Proxy\\InterfaceProxy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T12:48:13.189Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProxyService.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\ProxyService.cs",
+              "RelativeDocumentMoniker": "RoutingServer\\Proxy\\ProxyService.cs",
+              "ToolTip": "C:\\Users\\pc\\Desktop\\Web-Front-Development\\RoutingServer\\RoutingServer\\Proxy\\ProxyService.cs",
+              "RelativeToolTip": "RoutingServer\\Proxy\\ProxyService.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwAcAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T12:48:29.587Z"
             }
           ]
         }
