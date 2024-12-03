@@ -29,15 +29,12 @@ body, html {
 
 #input-box {
     position: absolute;
-    top: 20px;
-    left: 20px; /* Alignement à gauche */
-    width: 300px; /* Largeur cohérente */
+    left: 1%;
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    padding: 1%; /* Espacement intérieur */
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-
 #input-box h2 {
     margin-bottom: 10px;
 }
@@ -153,13 +150,13 @@ body, html {
 
 #instructions {
     position: absolute;
-    width: 300px; /* Même largeur que #input-box et #duration */
-    bottom: 20px; /* Aligner en bas */
-    left: 20px; /* Alignement à gauche */
-    max-height: 200px;
+    width: 20%; /* Largeur ajustée proportionnellement */
+    bottom: 5%;
+    left:75%;/* Alignement en bas en pourcentage */
+    max-height: 20%; /* Hauteur maximale en pourcentage */
     overflow-y: auto;
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 15px;
+    padding: 2%; /* Espacement intérieur */
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
@@ -176,15 +173,15 @@ body, html {
 
 #duration {
     position: absolute;
-    width: 300px; /* Même largeur que #input-box */
-    bottom: 225px; /* Ajustez selon vos besoins pour espacer */
-    left: 20px; /* Alignement à gauche */
+    width: 11%; /* Largeur proportionnelle */
+    bottom: 40%; /* Ajustez l'espacement en bas */
+    left: 1%; /* Alignement à gauche */
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
+    padding: 2%; /* Espacement intérieur */
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
+    font-size: 1vw; /* Taille de police adaptée à l'écran */
     font-weight: bold;
     text-align: center;
 }
