@@ -47,7 +47,7 @@ The project illustrates the practical application of middleware concepts, showca
 > Regarding the execution of the Heavy Client in JAVA, it is done manually (as explained [further below](#steps-for-manual-execution-of-the-clientJAVA-project)).
 
 
-### In case you don't want to run the 'launch_project.bat' file follow these steps below if:
+### In case you don't want to run the 'launch_project.bat' file follow these steps below :
 
 1. 🛠️ **Clone** the repository to your local machine.
 ```bash
@@ -80,6 +80,7 @@ start index.html
 ```
 
 
+
 ## 💡 How to use
 
 Once you did all the steps above, you'll be prompted to choose a starting place and a destination.
@@ -102,7 +103,7 @@ Mode :
 BIKING
 ```
 
-![Itinerary biking](assets/images/BIKING.png)
+![BIKING](https://github.com/user-attachments/assets/644f9360-fb27-499d-816c-efbe985c6c0f)
 
 ---
 
@@ -117,7 +118,8 @@ Mode :
 WALKING
 ```
 
-![Itinerary walking](assets/images/WALKING.png)
+![WALKING](https://github.com/user-attachments/assets/2c4fbd1c-bb0a-4a0f-bae2-5900113d3d38)
+
 
 ### Part 2 : Examples of the Client Console execution
 
