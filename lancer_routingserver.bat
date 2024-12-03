@@ -1,5 +1,9 @@
 @echo off
 
+:: Déterminer le chemin du dossier où se trouve le script
+set SCRIPT_DIR=%~dp0
+cd /d "%SCRIPT_DIR%"
+
 :: Vérification des privilèges administrateur
 NET SESSION >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
@@ -13,7 +17,6 @@ set LOG_FILE="%temp%\activemq_output.log"
 if exist %LOG_FILE% del %LOG_FILE%
 
 :: Lancer ActiveMQ avec redirection de sortie
-cd /d "C:\Users\pc\Desktop\Web-Front-Development"
 start cmd /k "activemq start > %LOG_FILE% 2>&1"
 
 :: Vérifier si ActiveMQ est démarré en surveillant la ligne clé
@@ -32,7 +35,7 @@ IF %ERRORLEVEL% EQU 0 (
 
 :RUN_ROUTING_SERVER
 :: Lancer RoutingServer.exe
-start "Routing Server" "C:\Users\pc\Desktop\Web-Front-Development\RoutingServer\RoutingServer\bin\Debug\RoutingServer.exe"
+start "Routing Server" "%SCRIPT_DIR%RoutingServer\RoutingServer\bin\Debug\RoutingServer.exe"
 
 :: Nettoyer le fichier temporaire
 del %LOG_FILE%
