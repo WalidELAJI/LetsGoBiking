@@ -14,6 +14,7 @@ using MapProject.Proxy;
 using System.ServiceModel.Description;
 using System.ServiceModel;
 using RoutingServer.Proxy;
+using RoutingServer.SOAP;
 
 
 
@@ -32,7 +33,8 @@ namespace CsharpServer
             {
                 Task.Run(StartProxyServer),
                 Task.Run(() => InitializeActiveMQ("InstructionQueue")),
-                Task.Run(Start)
+                Task.Run(Start),
+                Task.Run(StartItinerarySOAPServer)
             };
 
             try
@@ -81,54 +83,6 @@ namespace CsharpServer
                 Console.WriteLine($"Erreur lors de l'initialisation de ActiveMQ : {ex.Message}");
             }
         }
-
-        /* public static void StartProxyServer()
-         {
-             Uri baseAddress = new Uri("http://localhost:8082/ProxyService");
-             try
-             {
-                 using (ServiceHost host = new ServiceHost(typeof(ProxyService), baseAddress))
-                 {
-                     if (!host.Description.Behaviors.Any(b => b is ServiceMetadataBehavior))
-                     {
-                         ServiceMetadataBehavior smb = new ServiceMetadataBehavior
-                         {
-                             HttpGetEnabled = true
-                         };
-                         host.Description.Behaviors.Add(smb);
-                     }
-
-                     //configuration de la communication du service SOAP
-                     var binding = new BasicHttpBinding
-                     {
-                         MaxReceivedMessageSize = 52428800, // 50 MB
-                         MaxBufferSize = 52428800,
-                         MaxBufferPoolSize = 52428800,
-                         Security = { Mode = BasicHttpSecurityMode.None },
-                         OpenTimeout = TimeSpan.FromMinutes(2),
-                         CloseTimeout = TimeSpan.FromMinutes(2),
-                         SendTimeout = TimeSpan.FromMinutes(5),
-                         ReceiveTimeout = TimeSpan.FromMinutes(5)
-                     };
-
-                     host.AddServiceEndpoint(typeof(InterfaceProxy), binding, "");
-                     host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName,
-                         MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
-
-                     Console.WriteLine("Starting the SOAP PROXY Service...");
-                     host.Open();
-                     Console.WriteLine($"SOAP Proxy Service is running at {baseAddress}");
-
-                     Console.WriteLine("Press Enter to terminate the service.");
-                     Console.ReadLine();
-                 }
-             }
-             catch (Exception ex)
-             {
-                 Console.WriteLine($"Error starting SOAP Proxy Service: {ex.Message}");
-                 Console.WriteLine($"StackTrace: {ex.StackTrace}");
-             }
-         }*/
         public static void StartProxyServer()
         {
             Uri baseAddress = new Uri("http://localhost:8082/ProxyService");
@@ -158,7 +112,7 @@ namespace CsharpServer
                     host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName,
                         MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
 
-                    Console.WriteLine("Starting SOAP Proxy Service...");
+                    Console.WriteLine("Starting SOAP Proxy Server on localhost:8082/ProxyService...");
                     host.Open();
                     Console.WriteLine($"SOAP Proxy Service running at {baseAddress}");
 
@@ -172,6 +126,52 @@ namespace CsharpServer
             catch (Exception ex)
             {
                 Console.WriteLine($"Error starting SOAP Proxy Service: {ex.Message}");
+                Console.WriteLine($"StackTrace: {ex.StackTrace}");
+            }
+        }
+        public static void StartItinerarySOAPServer()
+        {
+            Uri baseAddress = new Uri("http://localhost:8083/SoapService");
+            try
+            {
+                using (ServiceHost host = new ServiceHost(typeof(SoapService), baseAddress))
+                {
+                    if (!host.Description.Behaviors.Any(b => b is ServiceMetadataBehavior))
+                    {
+                        ServiceMetadataBehavior smb = new ServiceMetadataBehavior { HttpGetEnabled = true };
+                        host.Description.Behaviors.Add(smb);
+                    }
+
+                    var binding = new BasicHttpBinding
+                    {
+                        MaxReceivedMessageSize = 52428800,
+                        MaxBufferSize = 52428800,
+                        MaxBufferPoolSize = 52428800,
+                        Security = { Mode = BasicHttpSecurityMode.None },
+                        OpenTimeout = TimeSpan.FromMinutes(2),
+                        CloseTimeout = TimeSpan.FromMinutes(2),
+                        SendTimeout = TimeSpan.FromMinutes(5),
+                        ReceiveTimeout = TimeSpan.FromMinutes(5)
+                    };
+
+                    host.AddServiceEndpoint(typeof(InterfaceSoap), binding, "");
+                    host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName,
+                        MetadataExchangeBindings.CreateMexHttpBinding(), "mex");
+
+                    Console.WriteLine("Starting SOAP Server for CLIENT on localhost:8083/SoapService...");
+                    host.Open();
+                    Console.WriteLine($"SOAP running at {baseAddress}");
+
+                    Console.ReadLine();
+                }
+            }
+            catch (AddressAccessDeniedException ex)
+            {
+                Console.WriteLine("Access denied. Run as administrator. ");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error starting SOAP : {ex.Message}");
                 Console.WriteLine($"StackTrace: {ex.StackTrace}");
             }
         }
