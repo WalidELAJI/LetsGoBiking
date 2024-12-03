@@ -11,20 +11,21 @@ namespace RoutingServer.Itinerary
     public class ItineraryService
     {
 
-        // Calculate the approximate distance between two geographical points using Euclidean distance
-        // This approximation is suitable for small distances and provides similar results to the Haversine formula.
-        private static double EuclideanDistance(double lat1, double lon1, double lat2, double lon2)
-        {
-            const double R = 6371e3; // Earth's radius in meters
-            double deltaLat = (lat2 - lat1) * Math.PI / 180; // Latitude difference in radians
-            double deltaLon = (lon2 - lon1) * Math.PI / 180; // Longitude difference in radians
-            double phi1 = lat1 * Math.PI / 180; // Convert latitude to radians
-            double phi2 = lat2 * Math.PI / 180; // Convert latitude to radians
+        // Calculate the approximate distance between two geographical points using the Heaviside approximation
+        // This method simplifies the distance calculation by assuming a spherical Earth and using Cartesian geometry.
+        // Suitable for small distances with reduced computational complexity compared to the Haversine formula.
 
-            // Approximation of Cartesian distances
-            double x = deltaLon * Math.Cos((phi1 + phi2) / 2); // Adjust for convergence of meridians
+        private static double HeavisideDistance(double lat1, double lon1, double lat2, double lon2)
+        {
+            const double R = 6371e3; // Rayon de la Terre en mètres
+            double deltaLat = (lat2 - lat1) * Math.PI / 180; // Différence de latitude en radians
+            double deltaLon = (lon2 - lon1) * Math.PI / 180; // Différence de longitude en radians
+
+            // Approximation par Heaviside : distance simplifiée
+            double x = deltaLon * Math.Cos(lat1 * Math.PI / 180); // Ajuste la convergence des méridiens
             double y = deltaLat;
-            // Return the Euclidean distance scaled to Earth's radius
+
+            // Retourne la distance Euclidienne approximée
             return Math.Sqrt(x * x + y * y) * R;
         }
 
@@ -47,14 +48,14 @@ namespace RoutingServer.Itinerary
                 // Closest station is determined based on distance and bike availability.
                 var closestOriginStation = originStations?
                     .Where(station => station.BikesAvailable > 0) // Station must have bikes available
-                    .OrderBy(station => EuclideanDistance(originLatitude, originLongitude, station.Latitude, station.Longitude))
+                    .OrderBy(station => HeavisideDistance(originLatitude, originLongitude, station.Latitude, station.Longitude))
                     .FirstOrDefault(); // Select the closest station
 
                 // Identify the nearest station with available spaces near the destination
                 // Closest station is determined based on distance and space availability for bike drop-off.
                 var closestDestinationStation = destinationStations?
                     .Where(station => station.BikeStands > station.BikesAvailable) // Must have free stands
-                    .OrderBy(station => EuclideanDistance(destinationLatitude, destinationLongitude, station.Latitude, station.Longitude))
+                    .OrderBy(station => HeavisideDistance(destinationLatitude, destinationLongitude, station.Latitude, station.Longitude))
                     .FirstOrDefault(); // Select the closest station
 
                 // Determine the itinerary approach based on station availability and user preference for bike usage
