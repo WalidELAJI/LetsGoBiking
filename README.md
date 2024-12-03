@@ -39,7 +39,7 @@ The project illustrates the practical application of middleware concepts, showca
 > Due to Windows 10/11 port access policies and protected system resources, you must run the servers as an administrator to allow them to host services on localhost. If you are running the servers from an IDE, ensure that you launch your IDE as an administrator as well.
   
 > 💡 [NOTE]  
-> Ensure that your environment variables are properly configured for tools like ([msbuild (https://visualstudio.microsoft.com/downloads/?cid=learn-onpage-download-cta#build-tools-for-visual-studio-2022), [nuget](https://www.nuget.org/downloads), [activemq](https://activemq.apache.org/components/classic/download/) and [mvn](https://maven.apache.org/download.cgi)), If everything is set up, you can run the process automatically with `launch_project.bat`.
+> Ensure that your environment variables are properly configured for tools like [msbuild](https://visualstudio.microsoft.com/downloads/?cid=learn-onpage-download-cta#build-tools-for-visual-studio-2022), [nuget](https://www.nuget.org/downloads), [activemq](https://activemq.apache.org/components/classic/download/) and [mvn](https://maven.apache.org/download.cgi)), If everything is set up, you can run the process automatically with `launch_project.bat`.
 
 1. 🛠️ **Clone** the repository to your local machine.
 
@@ -48,7 +48,7 @@ git clone https://github.com/WalidELAJI/Web-Front-Development/
 ```
 
 2. 🌐 **Start ActiveMQ:**
-**Open** an ActiveMQ instance in a terminal. Ensure it is [you have it installed](https://activemq.apache.org/components/classic/download/)and added to your system's environment variables.
+**Open** an ActiveMQ instance in a terminal. Ensure it is [you have it installed](https://activemq.apache.org/components/classic/download/) and added to your system's environment variables.
 
 ```bash
 activemq start
