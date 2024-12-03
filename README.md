@@ -90,7 +90,7 @@ Once you did all the steps above, you'll be prompted to choose a starting place 
 🔵 = JCDecaux bike itinerary
 🔴 = Walking itinerary
 
-#### Some map showcases and search addresses (note that you can type whatever you want, not only plain cities)
+#### Some map showcases and search addresses (note that you can type whatever you want)
 
 ```
 Départ :
@@ -162,8 +162,8 @@ The user can keep on asking for the next instructions until he gets all the inst
 
 ## ✍️ Authors
 
-- Walid El Aji 
-- Yasmine Badia 
+- **Walid El Aji** 
+- **Yasmine Badia** 
 
 
 
