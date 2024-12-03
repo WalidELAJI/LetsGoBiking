@@ -35,11 +35,10 @@ The project illustrates the practical application of middleware concepts, showca
 - Maven
 
 ### 🚀 Installation and step-by-step setup
-::⚠️
-WARNING  
+⚠️[WARNING]  
   Due to Windows 10/11 port access policies and protected system resources, you must run the servers as an administrator to allow them to host services on localhost. If you are running the servers from an IDE, ensure that you launch your IDE as an administrator as well.
-:::
-> 💡 [!NOTE]  
+  
+> 💡 [NOTE]  
 > Ensure that your environment variables are properly configured for tools like ([msbuild (https://visualstudio.microsoft.com/downloads/?cid=learn-onpage-download-cta#build-tools-for-visual-studio-2022), [nuget](https://www.nuget.org/downloads), [activemq](https://activemq.apache.org/components/classic/download/) and [mvn](https://maven.apache.org/download.cgi)), If everything is set up, you can run the process automatically with `launch_project.bat`.
 
 1. 🛠️ **Clone** the repository to your local machine.
