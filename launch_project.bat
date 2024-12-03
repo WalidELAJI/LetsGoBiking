@@ -22,5 +22,8 @@ timeout /t 4 >nul
 :: Lancer RoutingServer.exe
 start "Routing Server" "%SCRIPT_DIR%RoutingServer\RoutingServer\bin\Debug\RoutingServer.exe"
 
+cd ./src
+start index.html
+
 echo Tout est lancé.
 pause

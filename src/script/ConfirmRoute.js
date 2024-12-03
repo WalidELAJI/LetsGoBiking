@@ -201,7 +201,7 @@ function drawItineraryOnMap(data) {
 
     // Liste des segments pour le mode cycling
     const segments = [
-        { key: "OriginToStation", color: "green", dashArray: "6 6", label: "Segment vers station" },
+        { key: "OriginToStation", color: "red", dashArray: "6 6", label: "Segment vers station" },
         { key: "StationToStation", color: "blue", dashArray: "", label: "Segment inter-stations" },
         { key: "StationToDestination", color: "red", dashArray: "6 6", label: "Segment vers destination" },
     ];
