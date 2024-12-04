@@ -129,6 +129,34 @@ namespace CsharpServer
                 Console.WriteLine($"StackTrace: {ex.StackTrace}");
             }
         }
+
+        private static InterfaceProxy startClient_proxy()
+        {
+            try
+            {
+                var binding = new BasicHttpBinding
+                {
+                    MaxReceivedMessageSize = 52428800, // 50 MB
+                    MaxBufferSize = 52428800,
+                    MaxBufferPoolSize = 52428800,
+                    Security = { Mode = BasicHttpSecurityMode.None },
+                    OpenTimeout = TimeSpan.FromMinutes(2),
+                    CloseTimeout = TimeSpan.FromMinutes(2),
+                    SendTimeout = TimeSpan.FromMinutes(5),
+                    ReceiveTimeout = TimeSpan.FromMinutes(5)
+                };
+
+                var endpoint = new EndpointAddress("http://localhost:8082/ProxyService");
+                var factory = new ChannelFactory<InterfaceProxy>(binding, endpoint);
+                return factory.CreateChannel();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating Proxy Client: {ex.Message}");
+                throw;
+            }
+        }
+
         public static void StartItinerarySOAPServer()
         {
             Uri baseAddress = new Uri("http://localhost:8083/SoapService");
@@ -187,21 +215,25 @@ namespace CsharpServer
             context.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type");
 
             string response = "";
-            ProxyService proxyService = new ProxyService();
+
+            InterfaceProxy proxyClient = null;
+            proxyClient = startClient_proxy();
+
 
             try
             {
                 if (path == "/jcdecaux/stations")
                 {
                     string city = context.Request.QueryString["city"];
-                    var stations = await proxyService.GetStationsJcdecaux(city);
+                    var stations = await proxyClient.GetStationsJcdecaux(city);
                     response = Newtonsoft.Json.JsonConvert.SerializeObject(stations);
                     context.Response.StatusCode = 200; // OK
                 }
                 else if (path == "/openstreetmap/geocode")
                 {
                     string query = context.Request.QueryString["query"];
-                    var geocodeResponse = await proxyService.getAPIGeocode(query);
+                    var geocodeResponse = await proxyClient.getAPIGeocode(query);
+
                     response = Newtonsoft.Json.JsonConvert.SerializeObject(geocodeResponse);
                     context.Response.StatusCode = 200; // OK
                 }
@@ -209,7 +241,7 @@ namespace CsharpServer
                 {
                     string latitude = context.Request.QueryString["lat"];
                     string longitude = context.Request.QueryString["lon"];
-                    var responseReverted = await proxyService.getAPIReverseGeocode(
+                    var responseReverted = await proxyClient.getAPIReverseGeocode(
                         double.Parse(latitude, System.Globalization.CultureInfo.InvariantCulture),
                         double.Parse(longitude, System.Globalization.CultureInfo.InvariantCulture)
                     );
@@ -244,7 +276,7 @@ namespace CsharpServer
                             bool Bike = mode == "cycling"; // Determine the mode
 
                             // Call the ItineraryService
-                            response = await proxyService.getGeneratedItinerary(
+                            response = await proxyClient.getGeneratedItinerary(
                                 parsedoriginLatitude, parsedOriginLongitude, parsedDestinationLatitude, parsedDestinationLongitude, Bike);
 
                             //VIDER LA LISTE : après chaque requête vider la queue (si contient déjà instructions de l'ancien appel)
@@ -429,6 +461,8 @@ namespace CsharpServer
                 Console.WriteLine($"Erreur lors de la suppression des messages dans la queue : {ex.Message}");
             }
         }
+
+
 
 
 
